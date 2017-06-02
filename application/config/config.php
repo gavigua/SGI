@@ -27,7 +27,7 @@ $config['project_name']  = 'Sistema de Gestion de Inventario';
 $config['base_url'] = 'http://sgi.sti.com.ve/';
 $config['admin_url'] = 'http://'.$config['base_url'].'/admin';
 $config['project_admin'] = $config['project_name'] . 'Admin';
-$config['project_developer'] = 'JCR';
+$config['project_developer'] = 'Juan Carlos Ramos';
 
 //Meta keywords
 $config['meta_keywords'] = 'intranet, gestion, sgi, inventario';
@@ -334,7 +334,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '5125c356c48ae203a45ae894443f9d323f040de96910f9dc1b...';
 
 /*
 |--------------------------------------------------------------------------
@@ -387,10 +387,10 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files';
+$config['sess_driver'] = 'database';
 $config['sess_cookie_name'] = 'sgi_session';
-$config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_expiration'] = 7200;  
+$config['sess_save_path'] = 'sgi_session';
 $config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
