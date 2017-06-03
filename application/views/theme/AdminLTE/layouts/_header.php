@@ -44,7 +44,7 @@
 
   <header class="main-header">
 
-    <?php $this->load->view(THEME . 'layouts/navbar');?>
+    <?php $this->load->view(THEME . 'layouts/_navbar');?>
   </header>
   
-<?php $this->load->view(THEME . 'layouts/sidebar');?>
+<?php $this->load->view(THEME . 'layouts/_sidebar');?>
