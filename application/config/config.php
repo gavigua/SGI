@@ -23,11 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+date_default_timezone_set('America/Caracas');
 $config['project_name']  = 'Sistema de Gestion de Inventario';
 $config['base_url'] = 'http://sgi.sti.com.ve/';
 $config['admin_url'] = 'http://'.$config['base_url'].'/admin';
 $config['project_admin'] = $config['project_name'] . 'Admin';
 $config['project_developer'] = 'Juan Carlos Ramos';
+$config['version'] = '0.1.0';
 
 //Meta keywords
 $config['meta_keywords'] = 'intranet, gestion, sgi, inventario';

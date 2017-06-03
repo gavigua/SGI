@@ -1,9 +1,9 @@
  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> <?= $this->config->item('version') ;?>
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="<?php echo base_url();?>"><?= $this->config->item('project_developer') ?></a>.</strong> All rights
+    <strong>Copyright <?php echo date('Y');?>  &copy; <a href="<?php echo base_url();?>"><?= $this->config->item('project_developer'); ?></a>.</strong> All rights
     <?= $this->config->item('project_name') ?>
     reserved.
   </footer>

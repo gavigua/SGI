@@ -44,7 +44,7 @@
 
   <header class="main-header">
 
-    <?php $this->load->view('theme/AdminLTE/navbar');?>
+    <?php $this->load->view(THEME . 'layouts/navbar');?>
   </header>
   
-<?php $this->load->view('theme/AdminLTE/sidebar');?>
+<?php $this->load->view(THEME . 'layouts/sidebar');?>

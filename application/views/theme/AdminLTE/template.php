@@ -1,4 +1,4 @@
-<?php $this->load->view('theme/AdminLTE/_header'); ?>
+<?php $this->load->view(THEME . 'layouts/_header'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,4 +34,4 @@
     </section>
     <!-- /.content -->
 </div>
-<?php $this->load->view('theme/AdminLTE/_footer'); ?>
+<?php $this->load->view(THEME . 'layouts/_footer'); ?>
