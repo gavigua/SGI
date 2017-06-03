@@ -49,10 +49,14 @@ class Login extends CI_Controller {
             return FALSE;
         }
         
-        
+           
+        /*
+         * Permite salir del sistema 
+         * 
+         */
         public function salir(){
             $this->session->sess_destroy();
-            redirect('seguridad/login');
+            redirect('login');
         }
         
 }

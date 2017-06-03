@@ -32,10 +32,6 @@ class Main extends CI_Controller {
 	$this->load->view(THEME . TEMPLATE, $DATA);
 	}
         
-        
-        /*
-         * Validar que el usuario y password Solicitados exista en la 
-         * Bases de datos         * 
-         */
+     
       
 }
