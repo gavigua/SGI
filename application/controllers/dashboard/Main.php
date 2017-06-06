@@ -28,7 +28,7 @@ class Main extends CI_Controller {
 	{
             $DATA['titulo'] = 'Gestion de Sistemas';
             $DATA['descripcion'] = 'Gestion de Sistemas de Inventario';
-            $DATA['contenido'] = 'welcome_message';
+            $DATA['contenido'] = 'inicio';
 	$this->load->view(THEME . TEMPLATE, $DATA);
 	}
         

@@ -1,5 +1,5 @@
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>TI</span>
       <!-- logo for regular state and mobile devices -->
@@ -52,7 +52,7 @@
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar Session</a>
+                  <a href="<?php echo base_url();?>admin/login/salir" class="btn btn-default btn-flat">Cerrar Session</a>
                 </div>
               </li>
             </ul>

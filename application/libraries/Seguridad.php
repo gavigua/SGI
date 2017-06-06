@@ -76,5 +76,39 @@ class Seguridad {
             redirect('/');
         }
     }
-
+  public function crearSession() {
+        $passwordF = hash('sha256', sha1($this->CI->input->post('password')));
+        $query = $this->CI->db
+                        ->select('U.* , UR.rol_id, R.descripcion rol')
+                        ->from('usuario U')
+                        ->join('usuario_rol UR', 'UR.usuario_id = U.id')
+                        ->join('rol R', 'R.id = UR.rol_id')
+                        ->where('U.usuario', $this->CI->input->post('usuario'))
+                        ->where('U.password', $passwordF)
+                        ->where('U.estado', 1)
+                        ->get()->row();
+        if ($query && $this->SetSession($query)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+     * Crea la sessión a partir del array recibido.
+     * @param Array $query Valores a insertar en la variable de sesión
+     * @return boolean
+     */
+    private function SetSession($query) {
+        $data = array(
+            'user_login' => TRUE,
+            'usuario_id' => $query->id,
+            'usuario' => $query->usuario,
+            'rol_id' => $query->rol_id,
+            'rol' => $query->rol,
+        );
+        $this->CI->session->set_userdata($data);
+        return TRUE;
+    }
+    
+    
 }

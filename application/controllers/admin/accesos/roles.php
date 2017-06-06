@@ -1,8 +1,19 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+
+/**
+ * Controlador que permite gestionar los registro de usuarios del sistema
+ *
+ * @package         SGI
+ * @subpackage      Roles
+ * @category        Controlador
+ * @author          Jcramos
+ * @author          Juan Carlos Ramos
+ * @link            http://sgi.sti.com.ve/
+ * @version         Current v0.1.0 
+ * @copyright       Copyright (c) 2017 SGI
+ * @license         MIT
+ * @since           31/06/2017
  */
-

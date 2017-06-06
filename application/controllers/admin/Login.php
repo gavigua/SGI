@@ -1,12 +1,30 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+
+
+/**
+ * Controlador que permite gestionar los registro de usuarios del sistema
+ *
+ * @package         SGI
+ * @subpackage      Admin
+ * @category        Controlador
+ * @author          Jcramos
+ * @author          Juan Carlos Ramos
+ * @link            http://sgi.sti.com.ve/
+ * @version         Current v0.1.0 
+ * @copyright       Copyright (c) 2017 SGI
+ * @license         MIT
+ * @since           31/06/2017
+ */
+
+class Login extends MY_Controller {
 
     
     
     public function __construct() {
         parent::__construct();
+         $this->vista = 'admin/' . $this->controlador . '/';
     }
 
     /**
@@ -28,7 +46,21 @@ class Login extends CI_Controller {
 	{
             $DATA['titulo'] = 'Gestion de Sistemas';
             $DATA['descripcion'] = 'Gestion de Sistemas de Inventario';
-	$this->load->view(THEME . TEMPLATELOGIN, $DATA);
+            $DATA['contenido' ] = $this->vista . 'index';
+            $this->form_validation->set_rules('usuario','Usuario','trim|required|callback__verificar_usuario');
+            $this->form_validation->set_rules('password','Contraseña','trim|required');
+            $this->form_validation->set_message('_verificar_usuario','Usuario o Contraseña incorrecta');
+            if ($this->form_validation->run()){
+                if ($this->seguridad->crearSession()){
+                                 
+                    redirect($this->session->userdata('peticion_url'));
+                }
+            }else{
+             
+               $this->load->view(THEME . TEMPLATELOGIN, $DATA);
+            }
+                
+	
 	}
         
         
@@ -37,17 +69,17 @@ class Login extends CI_Controller {
          * Bases de datos         * 
          */
         
-        public function _verificar_usuario(){
-            $passwordF = hash('sha256', sha1($this->input->post('password')));
-            $query  = $this->db
-                    ->where('usuario', $this->input->post('usuario') )
-                    ->where('password', $passwordF)
-                    ->where('estado' , 1)
-                    ->get('usuario');
-            if ($query->run_rows() > 0 )
-                return TRUE;
-            return FALSE;
-        }
+public function _verificar_usuario() {
+        $passwordF = hash('sha256', sha1($this->input->post('password')));
+        $query = $this->db
+                ->where('usuario', $this->input->post('usuario'))
+                ->where('password', $passwordF)
+                ->where('estado', 1)
+                ->get('usuario');
+        if ($query->num_rows() > 0)
+            return TRUE;
+        return FALSE;
+    }
         
            
         /*
@@ -56,7 +88,7 @@ class Login extends CI_Controller {
          */
         public function salir(){
             $this->session->sess_destroy();
-            redirect('login');
+            redirect('admin/login');
         }
         
 }
