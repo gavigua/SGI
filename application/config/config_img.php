@@ -1,6 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Archivo de configuración config_img que contiene variables con valores constantes
+ * utiles en distintas partes del sistema para cargar imagenes.
+ * @package         SGI
+ * @subpackage      Admin
+ * @category        Controlador
+ * @author          Jcramos
+ * @author          Juan Carlos Ramos
+ * @link            http://sgi.sti.com.ve/
+ * @version         Current v0.1.0 
+ * @copyright       Copyright (c) 2017 SGI
+ * @license         MIT
+ * @since           31/06/2017
+ */
 
 $CI =& get_instance();	
 $CI->config->load('config');   

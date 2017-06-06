@@ -103,7 +103,7 @@ $autoload['helper'] = array('url','sgi','inflector');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('config_img');
+$autoload['config'] = array('config_img','sgi_config');
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +117,7 @@ $autoload['config'] = array('config_img');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array();
+$autoload['language'] = array('mensajes');
 
 /*
 | -------------------------------------------------------------------

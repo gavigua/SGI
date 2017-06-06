@@ -1,6 +1,3 @@
-
-
-
 <div class="login-box">
     <div class="login-logo">
         <a href="#"><b><?php echo $descripcion; ?></b> </a>
@@ -9,7 +6,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">Ingrese su usuario y clave</p>
         <?php echo form_open('', 'id="form_principal"'); ?>
-
+         <?php echo validation_errors() ?>
         <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Usuario" name="usuario">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -33,7 +30,7 @@
             <!-- /.col -->
         </div>
         <?php echo form_close(); ?> 
-        <?php echo validation_errors() ?>
+       
 
 
         <a href="#">No recuerdo mi clave</a><br>
