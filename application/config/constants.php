@@ -92,7 +92,10 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  */
 
 define('THEME', 'theme/AdminLTE/');
+//define('THEME', 'theme/sb-admin-2/');
 define('TEMPLATE', 'template');
 define('TEMPLATELOGIN', 'template_login');
 define('TEMPLATEASSETS', 'assets/AdminLTE/');
+//define('TEMPLATEASSETS', 'assets/sb-admin-2/');
 define('TEMPLATEASSETSSGI','assets/sgi/');
+define('AVATAR_IMG', TEMPLATEASSETSSGI . 'uploads/avatar/');

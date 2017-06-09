@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS  ;?>plugins/daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS  ;?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS  ;?>plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS  ;?>plugins/datatables/extensions/Responsive/css/dataTables.responsive.css">
+  <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETSSGI  ;?>dist/js/jquery-nestable/jquery.nestable.css">
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETSSGI  ;?>dist/css/styles.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

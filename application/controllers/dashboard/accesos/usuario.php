@@ -1,7 +1,6 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-
 
 /**
  * Controlador que permite gestionar los registro de usuarios del sistema
@@ -17,8 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license         MIT
  * @since           31/06/2017
  */
-
 class Usuario extends MY_Controller {
+
     /**
      * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase 
      * e inicializar las variables que permiten dinamizar el desarrollo
@@ -33,6 +32,7 @@ class Usuario extends MY_Controller {
         $this->vista = $ruta . $this->controlador . '/';
         /* END VARIABLES */
     }
+
     /**
      * Lista todos las usuarios de rol super-administrador
      * registrados en la DB.
@@ -41,10 +41,12 @@ class Usuario extends MY_Controller {
     public function index() {
         $data = array(
             'titulo' => $this->titulo,
-            'contenido' => $this->vista . 'index'
+            'contenido' => $this->vista . 'index',
+            'avatar' => AVATAR_IMG . 'avatar.png'
         );
         $this->load->view(THEME . TEMPLATE, $data);
     }
+
     /**
      * Este método primero consulta si esta recibiendo datos via POST,
      * y si es así valida y guarda el registro del nuevo usuario super-administrador
@@ -93,6 +95,7 @@ class Usuario extends MY_Controller {
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
+
     /**
      * Cambia un usuario de estado de acuerdo al estado recibido como parametro
      * @param Int $id

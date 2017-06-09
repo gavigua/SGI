@@ -105,6 +105,11 @@ class Seguridad {
             'usuario' => $query->usuario,
             'rol_id' => $query->rol_id,
             'rol' => $query->rol,
+            'nombre' => $query->nombre,
+            'apellido' => $query->apellido,
+            'creado' => $query->created_at,
+            'avatar' => $query->avatar
+            
         );
         $this->CI->session->set_userdata($data);
         return TRUE;

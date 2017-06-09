@@ -25,6 +25,7 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         $this->controlador = controlador();
         $this->titulo = humanize($this->controlador);
+        
     }
 
 }

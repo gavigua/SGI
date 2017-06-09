@@ -1,41 +1,47 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
-/*
- * Helper para SGI.
- * @package     SGICMS
- * @subpackage  Helper
- * @category    Helper
- * @autor       Jcramos
- * @link        http://sgi.sti.com.ve
- * @version     Current v0.1.0
- * @copyright   Copyright (c) 2017  STI
- * @license     MIT License
- * @since       02/06/2017
- * 
+
+/**
+ * GratiaCms Helper
+ *
+ * @package         SGI
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          Jcramos
+ * @author          Juan Carlos Ramos
+ * @link            http://sgi.sti.com.ve
+ * @version         Current v0.1.0 
+ * @copyright       Copyright (c) 2017 soluciones en ti
+ * @license         MIT
+ * @since           13/07/2017
  */
 
-/*
+/**
  * Controlador
- * Retorna el nombre del controlador
- * el cual se hace la peticion
- * @return String Nombre del Controlador
- * 
+ * Retorna el nombre del controlador desde
+ * el cual se hace la petición
+ * @return String Nombre del controlador
  */
-
-function controlador(){
+function controlador() {
     $CI = & get_instance();
     return $CI->router->class;
 }
 
-/*
- * Retorna el nombre del modelo 
- * asumiendo que el nombre es el mismo que el controlador.
+/**
+ * Modelo
+ * Retorna el nombre del modelo
+ * asumiendo que el nombre del mismo 
+ * corresponde al mismo nombre del
+ * controlador desde el cual se hace
+ * la petición. Se agrega al nombre 
+ * del controlador el sufijo "_model".
+ * @return String Nombre del modelo
  */
+function modelo() {
+    return ucfirst(controlador()) . '_model';
+}
 
- function modelo(){
-     return ucfirst(controlador()) . '_model';
-     
- }
 /**
  * Este método retorna un mensaje informativo
  * o de alerta al usuario, informandole si la acción
@@ -62,6 +68,7 @@ function mensaje_alerta($tipo, $accion) {
             );
     }
 }
+
 /**
  * Este método consulta si un menú
  * tiene menús hijos asociados
@@ -72,6 +79,7 @@ function getMenuHijos($id) {
     $CI = & get_instance();
     return $CI->db->where('menu_id', $id)->order_by('posicion', 'asc')->get('menu')->result();
 }
+
 /**
  * Metodo para agregar los campos de auditoria 
  * antes de crear un nuevo campo.
@@ -91,6 +99,7 @@ function beforeInsert($dato, $eliminar_campo_nulo = TRUE) {
         return $dato;
     }
 }
+
 /**
  * Metodo para agregar los campos de auditoria 
  * antes de actualizar un registro.
@@ -110,6 +119,7 @@ function beforeUpdate($dato, $eliminar_campo_nulo = TRUE) {
         return $dato;
     }
 }
+
 /**
  * Metodo para verificar los campos vacios que llegan por los
  * métodos create y update cambiandolos a NULL,
@@ -128,6 +138,7 @@ function nullData($data) {
     }
     return $data;
 }
+
 /**
  * Crea la cache para la tabla 
  * desde la cual se solicita ejecutar esta función
@@ -140,6 +151,7 @@ function activarCache($data) {
     $CI->db->cache_on();
     return $data;
 }
+
 /**
  * Borra la cache para la tabla 
  * desde la cual se solicita ejecutar esta función
@@ -152,6 +164,7 @@ function desactivarCache($data) {
     $CI->db->cache_off();
     return $data;
 }
+
 /**
  * Método para redimensionar una imagen
  * de acuerdo a los parametros recibidos.
@@ -176,6 +189,7 @@ function redimensionarImagen($pathO, $pathD, $width, $height) {
     }
     return TRUE;
 }
+
 /**
  * Permite generar una cadena aleatoria del tamaño que venga como parametro
  * @param int $length
@@ -189,4 +203,39 @@ function generateRandomString($length = 15) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function do_upload() {
+    
+     $CI = & get_instance();
+    /* las configuraciones de la carpeta y los archivos que va aceptar subir
+      -debemos crear la carpeta uploads en el root del proyecto.
+      -tipos de archivos permitidos gif jpg png.
+      -tamaño maximo 100kb
+      -maximo ancho 1024
+      -maximo alto 768
+     */
+    $imagen = $CI->input->post('avatar');
+    $config['file_name'] = $CI->input->post('nombre') . $CI->input->post('apellido');
+    $config['remove_spaces'] = TRUE;
+    $config['upload_path'] = AVATAR_IMG;
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size'] = '100';
+    $config['max_width'] = '1024';
+    $config['max_height'] = '768';
+
+    /* cargamos la libreria de codeigniter upload
+      esta nos ayudara  a gestionar de manera sencilla la subida
+      del archivo.
+     */
+    $CI->load->library('upload', $config);
+
+    /* verifica si existe error */
+
+    if (!$CI->upload->do_upload()) {
+        return FALSE;
+    } else {
+        $data = array('upload_data' => $CI->upload->data());
+        return TRUE;
+    }
 }

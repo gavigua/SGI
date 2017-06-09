@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo base_url() . TEMPLATEASSETS; ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url() . AVATAR_IMG; print_r($this->session->userdata('avatar'))?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?php print_r($this->session->userdata('nombre') . ' ' . $this->session->userdata('apellido')) ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -24,7 +24,14 @@
         </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
+
+        <?php
+        $file = FCPATH . '/assets/sgi/menu/1/menu_' . $this->session->userdata('rol_id') . '.json';
+        $menus = json_decode(file_get_contents($file), true);
+      
+        ?>
         <ul class="sidebar-menu" data-widget="tree">
+            
             <li class="header">NAVEGACIÓN PRINCIPAL</li>
             <li class="active treeview">
                 <a href="#">
@@ -61,7 +68,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=<?php echo base_url(); ?>dashboard/accesos/usuario><i class="fa fa-circle-o"></i> Nuevo Usuario</a></li>
+                    <li><a href=<?php echo base_url(); ?>dashboard/accesos/usuario><i class="fa fa-circle-o"></i>Registros</a></li>
+                    <li><a href=<?php echo base_url(); ?>dashboard/accesos/usuario/crear><i class="fa fa-circle-o"></i>Nuevo Usuario</a></li>
                 </ul>
             </li>
             <li class="treeview">

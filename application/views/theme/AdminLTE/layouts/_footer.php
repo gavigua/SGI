@@ -49,5 +49,40 @@
 <script src="<?php echo base_url() . TEMPLATEASSETS  ;?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() . TEMPLATEASSETS  ;?>dist/js/demo.js"></script>
+<!-- DataTables JavaScript -->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETS ?>plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETS ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETS  ;?>plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <!--Validacion de Formualarios-->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/jquery-validate/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/jquery-validate/localization/messages_es.min.js"></script>
+        <!--Block en Ajax-->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/jquery-blockUI/jquery.blockUI.js"></script>
+        <!--Alertas-->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/bootbox.min.js"></script>
+        <!--Menu Nestable-->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/jquery-nestable/jquery.nestable.js"></script>
+        
+        <!-- Custom GratiaCms JavaScript -->
+        <script type="text/javascript" src="<?php echo base_url() . TEMPLATEASSETSSGI ?>dist/js/gratiacms.js"></script>
+ <script>
+            $(document).ready(function () {
+                GratiaCms.tooltip();
+                GratiaCms.eliminar();
+            });
+            /*
+             * Evitar enter en los forms
+             */
+            $(document).on("keydown", function (e) {
+                if (e.which === 8 && !$(e.target).is("input, textarea")) {
+                    e.preventDefault();
+                }
+            });
+        </script>
+          <script>
+  $(function () {
+    $("#listaUsuario").DataTable();
+  });
+</script>
 </body>
 </html>

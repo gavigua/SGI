@@ -33,3 +33,5 @@ $lang['mensaje_hecho_archivo_menu'] = "Los archivos de Menus fueron creados o ac
 $lang['mensaje_hecho_archivo_permiso'] = "Los archivos de los Permisos fueron creados o actualizados correctamente";
 $lang['mensaje_error_url'] = "<strong>Error!</strong> Url no disponible.";
 $lang['mensaje_error_permiso'] = "<strong>Error!</strong> No tiene permisos para esta sección";
+$lang['mensaje_error_avatar'] = "<strong>Error!</strong> error al subir la imagen";
+$lang['mensaje_hecho_avatar'] = "<strong>Listo!</strong> Avatar Listo";

@@ -1,6 +1,21 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <?php echo isset($data->id) ? "Actualizar" : "Crear" ?> Registro
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Usuarios</a></li>
+        <li class="active"><?php echo isset($data->id) ? "Actualizar" : "Crear" ?> Registro</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
 <?php echo validation_errors() ?>
 <div class="row">
     <div class="col-lg-12">
+        <div class="box">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <span>Datos del usuario</span>
@@ -12,10 +27,26 @@
             <div class="panel-body">
                 <?php echo form_open('', 'id="form-principal"'); ?>
                 <div class="row">
+                    <div class="form-group">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" name="avatar" class="form-control" id="avatar" value="<?php echo set_value('avatar', isset($data->avatar) ? $data->avatar : '') ?>" required/>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="control-label">Usuario <span class="required">*</span></label>
                             <input type=text" name="usuario" class="form-control" id="usuario" value="<?php echo set_value('usuario', isset($data->usuario) ? $data->usuario : '') ?>" required/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Nombre <span class="required">*</span></label>
+                            <input type=text" name="nombre" class="form-control" id="nombre" value="<?php echo set_value('nombre', isset($data->nombre) ? $data->nombre : '') ?>" required/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Apellido <span class="required">*</span></label>
+                            <input type=text" name="apellido" class="form-control" id="apellido" value="<?php echo set_value('apellido', isset($data->apellido) ? $data->apellido : '') ?>" required/>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -60,8 +91,10 @@
                 <?php echo form_close() ?>
             </div>
         </div>
+            </div>
     </div>
 </div>
+</section>
 <script>
     $(document).ready(function () {
         var reglas = {

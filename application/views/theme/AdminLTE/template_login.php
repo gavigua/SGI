@@ -15,7 +15,6 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS ;?>dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETSSGI ;?>dist/css/styles_login.css">
-  
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS ;?>plugins/iCheck/square/blue.css">
 

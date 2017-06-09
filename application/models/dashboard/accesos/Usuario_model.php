@@ -30,7 +30,10 @@ class Usuario_model extends MY_Model {
      * @var array
      */
     public $validate = array(
+        array('field' => 'avatar', 'label' => 'Avatar', 'rules' => 'trim|required'),
         array('field' => 'usuario', 'label' => 'Usuario', 'rules' => 'trim|required|max_length[20]|unique[usuario.usuario]'),
+        array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'trim|required|max_length[20]'),
+        array('field' => 'apellido', 'label' => 'Apellido', 'rules' => 'trim|required|max_length[20]'),
         array('field' => 'password', 'label' => 'Contraseña', 'rules' => 'trim|required|min_length[5]|max_length[20]'),
         array('field' => 're_password', 'label' => 'Verifique Contraseña', 'rules' => 'trim|required|matches[password]'),
         array('field' => 'estado', 'label' => 'Estado', 'rules' => 'trim|required|is_natural'),
@@ -43,7 +46,10 @@ class Usuario_model extends MY_Model {
      * @var array
      */
     public $validate_update = array(
+        array('field' => 'avatar', 'label' => 'Avatar', 'rules' => 'trim|required'),
         array('field' => 'usuario', 'label' => 'Usuario', 'rules' => 'trim|required|unique[usuario.usuario]'),
+        array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'trim|required|max_length[20]|unique[usuario.nombre]'),
+        array('field' => 'apellido', 'label' => 'Apellido', 'rules' => 'trim|required|max_length[20]|unique[usuario.apellido]'),
         array('field' => 'password', 'label' => 'Contraseña', 'rules' => 'trim|min_length[5]|max_length[10]'),
         array('field' => 're_password', 'label' => 'Verifique Contraseña', 'rules' => 'trim|min_length[5]|matches[password]'),
         array('field' => 'estado', 'label' => 'Estado', 'rules' => 'trim|required|is_natural'),
@@ -84,7 +90,10 @@ class Usuario_model extends MY_Model {
      */
     public function crear() {
         $data = array(
+            'avatar' => $this->input->post('avatar'),
             'usuario' => $this->input->post('usuario'),
+            'nombre' => $this->input->post('nombre'),
+            'apellido' => $this->input->post('apellido'),
             'email' => $this->input->post('email'),
             'password' => hash('sha256', sha1($this->input->post('password'))),
             'estado' => $this->input->post('estado')
@@ -105,7 +114,10 @@ class Usuario_model extends MY_Model {
      */
     public function actualizar($id) {
         $data = array(
+            'avatar' => $this->input->post('avatar'),
             'usuario' => $this->input->post('usuario'),
+            'nombre' => $this->input->post('nombre'),
+            'apellido' => $this->input->post('apellido'),
             'email' => $this->input->post('email'),
             'estado' => $this->input->post('estado')
         );
