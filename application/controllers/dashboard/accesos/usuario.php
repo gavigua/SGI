@@ -96,6 +96,22 @@ class Usuario extends MY_Controller {
         }
     }
 
+    
+    
+    /*
+     * 
+     * 
+     */
+    
+    public function eliminar($id = FALSE){
+        if ($this->Modelo->delete($id)){
+            mensaje_alerta('hecho', 'eliminar');
+        } else {
+            mensaje_alerta('error', 'eliminar');
+        }
+        redirect($this->url);
+    }
+
     /**
      * Cambia un usuario de estado de acuerdo al estado recibido como parametro
      * @param Int $id

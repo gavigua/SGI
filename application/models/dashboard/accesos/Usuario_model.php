@@ -127,4 +127,6 @@ class Usuario_model extends MY_Model {
         $this->db->where('usuario_id', $id)->update('usuario_rol', beforeUpdate(array('rol_id' => $this->input->post('rol_id')))); //se actualiza el rol
         return TRUE;
     }
+    
+ 
 }

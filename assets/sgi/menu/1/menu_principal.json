@@ -57,9 +57,9 @@
         "1": {
             "id": "1",
             "menu_id": null,
-            "etiqueta": "Seguridad",
+            "etiqueta": "Primer Menu",
             "url": "#",
-            "icono": "fa fa-lock"
+            "icono": "fa fa-dashboard"
         },
         "2": {
             "id": "2",
@@ -71,7 +71,7 @@
         "3": {
             "id": "3",
             "menu_id": null,
-            "etiqueta": "Men\u00fa",
+            "etiqueta": "Segundo Menu",
             "url": "#",
             "icono": "fa fa-sitemap"
         },
@@ -113,7 +113,7 @@
         "9": {
             "id": "9",
             "menu_id": null,
-            "etiqueta": "Pruebas",
+            "etiqueta": "Tercer Menu",
             "url": "#",
             "icono": "fa fa-desktop"
         }
