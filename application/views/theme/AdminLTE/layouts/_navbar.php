@@ -1,5 +1,5 @@
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo base_url() ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>TI</span>
       <!-- logo for regular state and mobile devices -->
@@ -18,17 +18,18 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url() . TEMPLATEASSETS  ;?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Nombre del Usuario</span>
+              <img src="<?php echo base_url() . AVATAR_IMG; print_r($this->session->userdata('avatar'))?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php print_r($this->session->userdata('nombre') . ' ' . $this->session->userdata('apellido')) ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url() . TEMPLATEASSETS  ;?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url() . AVATAR_IMG; print_r($this->session->userdata('avatar'))?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php print_r($this->session->userdata('nombre') . ' ' . $this->session->userdata('apellido')) ?> - Web Developer
+                  <small>Miembro desde <?php print_r($this->session->userdata('creado') ) ?></small>
+                  
                 </p>
               </li>
               <!-- Menu Body -->
@@ -49,10 +50,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="<?php echo base_url() . 'dashboard/accesos/usuario/actualizar/' . print_r($this->session->userdata('id'))  ?>" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar Session</a>
+                  <a href="<?php echo base_url();?>admin/acceso/login/salir" class="btn btn-default btn-flat">Cerrar Session</a>
                 </div>
               </li>
             </ul>
