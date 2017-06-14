@@ -27,59 +27,59 @@
     </ul>
     <!-- /.navbar-top-links -->
 
-<?php
-$file = FCPATH . '/assets/sgi/menu/1/menu_' . $this->session->userdata('rol_id') . '.json';
-$menus = json_decode(file_get_contents($file), true);
-?>
+    <?php
+    $file = FCPATH . '/assets/sgi/menu/3/menu_' . $this->session->userdata('rol_id') . '.json';
+    $menus = json_decode(file_get_contents($file), true);
+    ?>
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <?php foreach ($menus['original'] as $menu): ?>
-            <?php if ($menu['menu_id'] === NULL): ?>
-                <?php if (isset($menus['predecesor'][$menu['id']])): ?>
-                    <li>
-                        <a href="javascript:;"><i class="<?php echo $menu['icono'] ?>"></i> <?php echo $menu['etiqueta'] ?><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <?php foreach ($menus['predecesor'][$menu['id']] as $menuP): ?>
-                                <?php if (isset($menus['predecesor'][$menuP['id']])): ?>
-                                    <li>
-                                        <a href="javascript:;"><i class="<?php echo $menuP['icono'] ?>"></i> <?php echo $menuP['etiqueta'] ?><span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <?php foreach ($menus['predecesor'][$menuP['id']] as $menuS): ?>
-                                                <?php if (isset($menus['predecesor'][$menuS['id']])): ?>
-                                                    <li>
-                                                        <a href="javascript:;"><i class="<?php echo $menuS['icono'] ?>"></i> <?php echo $menuS['etiqueta'] ?><span class="fa arrow"></span></a>
-                                                        <ul class="nav nav-third-level">
-                                                            <?php foreach ($menus['predecesor'][$menuS['id']] as $menuSS): ?>
-                                                                <li>
-                                                                    <a href="<?php echo base_url() . $menuSS['url'] ?>"><i class="<?php echo $menuSS['icono'] ?>"></i> <?php echo $menuSS['etiqueta'] ?></a>
-                                                                </li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
-                                                    </li>
-                                                <?php else: ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $menuS['url'] ?>"><i class="<?php echo $menuS['icono'] ?>"></i> <?php echo $menuS['etiqueta'] ?></a>
-                                                    </li>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </li>
-                                <?php else: ?>
-                                    <li>
-                                        <a href="<?php echo base_url() . $menuP['url'] ?>"><i class="<?php echo $menuP['icono'] ?>"></i> <?php echo $menuP['etiqueta'] ?></a>
-                                    </li>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </ul>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?php echo base_url() . $menu['url'] ?>"><i class="<?php echo $menu['icono'] ?>"></i> <?php echo $menu['etiqueta'] ?></a>
-                    </li>
-                <?php endif; ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
+                    <?php if ($menu['menu_id'] === NULL): ?>
+                        <?php if (isset($menus['predecesor'][$menu['id']])): ?>
+                            <li>
+                                <a href="javascript:;"><i class="<?php echo $menu['icono'] ?>"></i> <?php echo $menu['etiqueta'] ?><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <?php foreach ($menus['predecesor'][$menu['id']] as $menuP): ?>
+                                        <?php if (isset($menus['predecesor'][$menuP['id']])): ?>
+                                            <li>
+                                                <a href="javascript:;"><i class="<?php echo $menuP['icono'] ?>"></i> <?php echo $menuP['etiqueta'] ?><span class="fa arrow"></span></a>
+                                                <ul class="nav nav-third-level">
+                                                    <?php foreach ($menus['predecesor'][$menuP['id']] as $menuS): ?>
+                                                        <?php if (isset($menus['predecesor'][$menuS['id']])): ?>
+                                                            <li>
+                                                                <a href="javascript:;"><i class="<?php echo $menuS['icono'] ?>"></i> <?php echo $menuS['etiqueta'] ?><span class="fa arrow"></span></a>
+                                                                <ul class="nav nav-third-level">
+                                                                    <?php foreach ($menus['predecesor'][$menuS['id']] as $menuSS): ?>
+                                                                        <li>
+                                                                            <a href="<?php echo base_url() . $menuSS['url'] ?>"><i class="<?php echo $menuSS['icono'] ?>"></i> <?php echo $menuSS['etiqueta'] ?></a>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
+                                                            </li>
+                                                        <?php else: ?>
+                                                            <li>
+                                                                <a href="<?php echo base_url() . $menuS['url'] ?>"><i class="<?php echo $menuS['icono'] ?>"></i> <?php echo $menuS['etiqueta'] ?></a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            </li>
+                                        <?php else: ?>
+                                            <li>
+                                                <a href="<?php echo base_url() . $menuP['url'] ?>"><i class="<?php echo $menuP['icono'] ?>"></i> <?php echo $menuP['etiqueta'] ?></a>
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php else: ?>
+                            <li>
+                                <a href="<?php echo base_url() . $menu['url'] ?>"><i class="<?php echo $menu['icono'] ?>"></i> <?php echo $menu['etiqueta'] ?></a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

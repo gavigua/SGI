@@ -1,5 +1,5 @@
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="<?php echo base_url() ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>TI</span>
       <!-- logo for regular state and mobile devices -->
@@ -53,7 +53,7 @@
                   <a href="<?php echo base_url() . 'dashboard/accesos/usuario/actualizar/' . print_r($this->session->userdata('id'))  ?>" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url();?>admin/login/salir" class="btn btn-default btn-flat">Cerrar Session</a>
+                  <a href="<?php echo base_url();?>admin/acceso/login/salir" class="btn btn-default btn-flat">Cerrar Session</a>
                 </div>
               </li>
             </ul>

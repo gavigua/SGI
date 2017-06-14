@@ -37,7 +37,7 @@ class Seguridad {
         $is_login = $this->CI->session->userdata('user_login');
         if ($controller !== 'login' && $controller !== 'migrations' && !$is_login) {
             $this->CI->session->set_userdata('peticion_url', current_url());
-            redirect('admin/login');
+            redirect('admin/acceso/login');
         } else if ($controller == 'login' && $is_login && $method = !'salir') {
             redirect('/');
         }

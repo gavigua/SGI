@@ -11,11 +11,12 @@
         <div class="row">
 
          <?php $this->load->view($contenido)  ;?>  
-          
+
         </div>
         <!-- /.row (main row) -->
 
     </section>
     <!-- /.content -->
 </div>
+
 <?php $this->load->view(THEME . 'layouts/_footer'); ?>
