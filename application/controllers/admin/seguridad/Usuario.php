@@ -27,6 +27,7 @@ class Usuario extends MY_Controller {
         $ruta = 'admin/seguridad/';
         $this->load->model($ruta . modelo(), 'Modelo');
         $this->load->model($ruta . 'Rol_model');
+        $this->load->model($ruta . 'Departamento_model');
         /* VARIABLES PARA DINAMIZAR */
         $this->url = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = $ruta . $this->controlador . '/';
@@ -69,6 +70,7 @@ class Usuario extends MY_Controller {
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
+
     /**
      * Este método primero consulta si esta recibiendo datos via POST,
      * y si es así valida y actualiza el registro del usuario en la tabla,
@@ -96,16 +98,14 @@ class Usuario extends MY_Controller {
         }
     }
 
-    
-    
     /* esta funcion realiza la eliminacion de los registros de la tablas usuario y usuario_rol 
      * permitiendo la normalizacion de los elementos en ambas tablas
      * 
      * 
      */
-    
-    public function eliminar($id = FALSE){
-        if ($this->Modelo->delete($id)){
+
+    public function eliminar($id = FALSE) {
+        if ($this->Modelo->delete($id)) {
             mensaje_alerta('hecho', 'eliminar');
         } else {
             mensaje_alerta('error', 'eliminar');
@@ -128,4 +128,5 @@ class Usuario extends MY_Controller {
             show_404();
         }
     }
+
 }

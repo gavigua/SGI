@@ -405,33 +405,6 @@
 
     </section>
     <!-- right col -->
-    <?php
-    $file = FCPATH . '/assets/sgi/menu/3/menu_' . $this->session->userdata('rol_id') . '.json';
-    $menus = json_decode(file_get_contents($file), true);
-    foreach ($menus['predecesor'][$menu['id']] as $menuP):
-        if (isset($menus['predecesor'][$menuP['id']])):
-            echo $menuP['icono'];
-            foreach ($menus['predecesor'][$menuP['id']] as $menuS):
-                if (isset($menus['predecesor'][$menuS['id']])):
-                    echo $menuS['icono'];
-                    echo $menuS['etiqueta'];
-                    foreach ($menus['predecesor'][$menuS['id']] as $menuSS):
-                        echo base_url() . $menuSS['url'];
-                        echo $menuSS['icono'];
-                        echo $menuSS['etiqueta'];
-                    endforeach;
-                else:
-                    echo base_url() . $menuS['url'];
-                    echo $menuS['icono'];
-                    echo $menuS['etiqueta'];
-                endif;
-            endforeach;
-        else:
-            echo base_url() . $menu['url'];
-            echo $menu['icono'];
-            echo $menu['etiqueta'];
-        endif;
-    endforeach;
-    ?>
+ 
 </body>
 </html>

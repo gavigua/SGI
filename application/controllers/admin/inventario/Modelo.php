@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Controlador que permite gestionar los Menús del sistema
+ * Controlador que permite gestionar los tipos de Menús del sistema
  *
  * @package         GRATIACMS
  * @subpackage      Admin
@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @version         Current v1.0.0 
  * @copyright       Copyright (c) 2010 - 2015 Tutorialesvirtuales
  * @license         MIT
- * @since           13/07/2015
+ * @since           24/08/2015
  */
 class Modelo extends MY_Controller {
     /**
@@ -21,32 +21,33 @@ class Modelo extends MY_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model('admin/inventario/' . modelo(), 'Modelo');
+        $ruta = 'admin/inventario/';
+        $this->load->model( $ruta . modelo(), 'Modelo');
+        $this->load->model($ruta . 'Marca_model');
         /* VARIABLES PARA DINAMIZAR */
         $this->url = base_url() . 'admin/inventario/' . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = 'admin/inventario/' . $this->controlador . '/';
         /* END VARIABLES */
     }
     /**
-     * Lista todos los menús registrados en la DB
-     * utilizando la libreria nestable de Jquery
+     * Lista todas los registros de la tabla consultada
+     * utilizando la libreria datatable de Jquery
      * @return      String vista
      */
     public function index() {
         $data = array(
             'titulo' => $this->titulo,
-            'contenido' => $this->vista . 'index',
+            'contenido' => $this->vista . 'index'
         );
         $this->load->view(THEME . TEMPLATE, $data);
     }
     /**
      * Este método primero consulta si esta recibiendo datos via POST,
-     * si es así valida y guarda los datos en la DB,
+     * y si es así valida y crea el nuevo registro en la DB,
      * de lo contrario carga el formulario para crear un nuevo registro
-     * @return  Mixed de acuerdo al caso, 
-     *          si recibe y valida los datos via POST
+     * @return  Mixed si recibe y valida los datos via POST
      *          redirecciona hacia el método Index
-     *          de lo contrario carga la vista
+     *          de lo contrario carga la vista del formulario
      */
     public function crear() {
         if ($this->input->post() && $this->Modelo->insert($this->input->post())) {
@@ -55,19 +56,18 @@ class Modelo extends MY_Controller {
         } else {
             $data = array(
                 'titulo' => 'Crear ' . $this->titulo,
-                'contenido' => $this->vista . 'crear',
+                'contenido' => $this->vista . 'crear'
             );
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
     /**
-     * Este método primero consulta si esta recibiendo datos via POST,
-     * si es así valida y actualiza el registro en la DB,
+     * Este método primero consulta si estan recibiendo datos via POST,
+     * y si es así valida y actualiza el registro en la DB,
      * de lo contrario carga el formulario para que el usuario edite el
-     * registro cuyo id es recibido por parametro
+     * registro cuyo id es recibido como parametro
      * @param   integer $id id del registro
-     * @return  Mixed de acuerdo al caso, 
-     *          si recibe y valida los datos via POST
+     * @return  Mixed si recibe y valida los datos via POST
      *          redirecciona hacia el método Index
      *          de lo contrario carga la vista
      */
@@ -80,16 +80,17 @@ class Modelo extends MY_Controller {
             $data = array(
                 'titulo' => 'Actualizar ' . $this->titulo,
                 'contenido' => $this->vista . 'crear',
-                'data' => $dato ? $dato : show_404(),
+                'data' => $dato ? $dato : show_404()
             );
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
     /**
-     * Éste método permite eliminar el registro de un menu
-     * Devuelve mensaje de error o exito en el borrado
+     * Éste método permite eliminar un registro
+     * de la tabla gestionada en la DB
+     * Devuelve mensaje de error o éxito en el borrado
      * @param       integer $id id del registro
-     * @return      Redirect to index
+     * @return      Redirect 
      */
     public function eliminar($id = FALSE) {
         if ($this->Modelo->delete($id)) {
@@ -99,50 +100,4 @@ class Modelo extends MY_Controller {
         }
         redirect($this->url);
     }
-    /**
-     * Metodo llamado via ajax
-     * Éste método permite al usuario utilizando
-     * la libreria nestable de Jquery cambiar la posición
-     * de un menú, ademas de poder asignarle, cambiar, 
-     * o quitar un menú padre en caso de ser necesario.
-     * @return void
-     */
-    public function guardar() {
-        if ($this->input->is_ajax_request()) {
-            $json = $this->input->post('menu');
-            $menus = json_decode($json);
-            foreach ($menus as $var => $value) {
-                $this->db->where('id', $value->id)->update('menu', array('menu_id' => NULL, 'posicion' => $var + 1));
-                if (!empty($value->children)) {
-                    foreach ($value->children as $key => $vchild) {
-                        $update_id = $vchild->id;
-                        $parent_id = $value->id;
-                        $this->db->where('id', $update_id)->update('menu', array('menu_id' => $parent_id, 'posicion' => $key + 1));
-                        if (!empty($vchild->children)) {
-                            foreach ($vchild->children as $key => $vchild1) {
-                                $update_id = $vchild1->id;
-                                $parent_id = $vchild->id;
-                                $this->db->where('id', $update_id)->update('menu', array('menu_id' => $parent_id, 'posicion' => $key + 1));
-                                if (!empty($vchild1->children)) {
-                                    foreach ($vchild1->children as $key => $vchild2) {
-                                        $update_id = $vchild2->id;
-                                        $parent_id = $vchild1->id;
-                                        $this->db->where('id', $update_id)->update('menu', array('menu_id' => $parent_id, 'posicion' => $key + 1));
-                                        if (!empty($vchild2->children)) {
-                                            foreach ($vchild2->children as $key => $vchild3) {
-                                                $update_id = $vchild3->id;
-                                                $parent_id = $vchild2->id;
-                                                $this->db->where('id', $update_id)->update('menu', array('menu_id' => $parent_id, 'posicion' => $key + 1));
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-   
 }

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Modelo que utiliza la libreria MY_Model para 
- * la gestión de la tabla permiso.
+ * la gestión de la tabla tipo menu.
  * Es utilizada para crear los usuarios del sistema
  *
  * @package         GRATIACMS
@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @version         Current v1.0.0 
  * @copyright       Copyright (c) 2010 - 2015 tutorialesvirtuales
  * @license         MIT
- * @since           06/08/2015
+ * @since           24/08/2015
  */
 class Marca_model extends MY_Model {
     /**
@@ -29,7 +29,7 @@ class Marca_model extends MY_Model {
      * de datos en la tabla.
      * @var array
      */
-   public $validate = array(
+    public $validate = array(
         array('field' => 'descripcion', 'label' => 'Descripcion', 'rules' => 'trim|required|max_length[30]|unique[marca.descripcion]'),
     );
 }

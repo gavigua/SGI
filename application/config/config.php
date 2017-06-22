@@ -29,7 +29,7 @@ $config['base_url'] = 'http://sgi.sti.com.ve/';
 $config['admin_url'] = 'http://'.$config['base_url'].'/admin';
 $config['project_admin'] = $config['project_name'] . 'Admin';
 $config['project_developer'] = 'Juan Carlos Ramos';
-$config['version'] = '0.1.0';
+$config['version'] = '0.2.0';
 
 //Meta keywords
 $config['meta_keywords'] = 'intranet, gestion, sgi, inventario';

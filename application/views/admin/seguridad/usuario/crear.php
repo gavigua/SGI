@@ -83,6 +83,12 @@
                             <?php echo form_dropdown('rol_id', $this->Rol_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('rol_id', isset($data->rol_id) ? $data->rol_id : ''), 'id="rol_id" class="form-control" required') ?>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Departamento <span class="required">*</span></label>
+                            <?php echo form_dropdown('departamento_id', $this->Departamento_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('departamento_id', isset($data->departamento_id) ? $data->departamento_id : ''), 'id="departamento_id" class="form-control" required') ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-offset-1 col-lg-11">
                     <input type="hidden" id="id" name="id" value="<?php echo isset($data->id) ? $data->id : '' ?>" />

@@ -23,4 +23,15 @@ class Rol_model extends MY_Model {
      * @var string
      */
     public $_table = 'rol';
+    /**
+     * Reglas de validación utilizadas
+     * por la libreria MY_Model
+     * para la inserción y actualización
+     * de datos en la tabla.
+     * @var array
+     */
+    public $validate = array(
+        array('field' => 'descripcion', 'label' => 'Descripcion', 'rules' => 'trim|required|max_length[30]|unique[rol.descripcion]'),
+        array('field' => 'observacion', 'label' => 'observacion', 'rules' => 'trim|required')
+    );
 }

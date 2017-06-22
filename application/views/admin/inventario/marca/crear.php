@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="panel panel-green">
             <div class="panel-heading">
-                <span>Datos de Marca</span>
+                <span>Datos Marcas</span>
                 <div class="pull-right">
                     <a href="<?php echo $this->url ?>" style="color:#FFF">
                         Volver al listado <i class="fa fa-hand-o-left"></i></a>

@@ -29,7 +29,7 @@
 
 
         <?php
-        $file = FCPATH . '/assets/sgi/menu/3/menu_' . $this->session->userdata('rol_id') . '.json';
+        $file = FCPATH . '/assets/sgi/menu/1/menu_' . $this->session->userdata('rol_id') . '.json';
         $menus = json_decode(file_get_contents($file), true);
         ?>
         
