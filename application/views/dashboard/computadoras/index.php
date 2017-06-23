@@ -33,53 +33,55 @@
                     <table id="lista" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>Propietario</th>
                                 <th>Nombre</th>
                                 <th>IP</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>
                                 <th>Procesador</th>
-                                <th>Tipo Procesador</th>
-                                <th>Ghz Procesador</th>
-                                <th>Ghz Procesador</th>
-                                <th>Estado</th>
+                                <th>Cores Logicos</th>
+                                <th>Cores</th>
+                                <th>Velocidad Ghz </th>
                                 <th>Acciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php /*$datas = $this->Modelo->getAll() */?>
-                            <?php /*foreach ($datas as $data):*/ ?>
+                            <?php $datas = $this->Modelo->getAll() ?>
+
+                            <?php foreach ($datas as $data): ?>
                                 <tr>
-                                    <td><?php /* echo $data->nombre */?></td>
-                                    <td><?php /*echo $data->apellido */?></td>
-                                    <td><?php /*echo $data->email */?></td>
-                                    <td><?php /*echo $data->descripcion */?></td>
-                                    <td><?php /*echo $data->apellido */?></td>
-                                    <td><?php /*echo $data->apellido */?></td>
-                                    <td><?php /*echo $data->email */?></td>
-                                    <td><?php /*echo $data->descripcion */?></td>
-                                    <td><?php /*echo $data->estado ? ('<a href="' . $this->url . 'cambiar-estado/' . $data->id . '/0" class="tooltips" data-original-title="Desactivar este usuario"><span class="label label-sm label-success"> Activo </span></a>') : ('<a href="' . $this->url . 'cambiar-estado/' . $data->id . '/1" class="tooltips" data-original-title="Activar este usuario"><span class="label label-sm label-danger"> Inactivo </span></a>')*/ ?></td>
+                                    <td><?php echo $data->nombre . " " . $data->apellido ?></td>
+                                    <td><?php echo $data->hostname ?></td>
+                                    <td><?php echo $data->direccion_ip ?></td>
+                                    <td><?php echo $data->MAdescripcion ?></td>
+                                    <td><?php echo $data->MOdescripcion ?></td>
+                                    <td><?php echo $data->PROdescripcion ?></td>
+                                    <td><?php echo $data->PROPlogicos ?></td>
+                                    <td><?php echo $data->PROCores ?></td>
+                                    <td><?php echo $data->PROVelocidad ?></td>
                                     <td>
-                                        <a href="<?php echo $this->url . 'actualizar/' /*. $data->id */?>" class="btn btn-warning btn-sm tooltips" data-original-title="Editar este registro">
+                                        <a href="<?php echo $this->url . 'actualizar/' . $data->id ?>" class="btn btn-warning btn-sm tooltips" data-original-title="Editar este registro">
                                             <i class="fa fa-edit"></i></a>
-                                        <a href="<?php echo $this->url . 'eliminar/' /*. $data->id */?>" class="btn btn-danger btn-sm tooltips" data-original-title="Eliminar este registro">
+                                        <a href="<?php echo $this->url . 'eliminar/' . $data->id ?>" class="btn btn-danger btn-sm tooltips" data-original-title="Eliminar este registro">
                                             <i class="fa fa-remove"></i></a>
                                     </td>
 
                                 </tr>
-                            <?php /* endforeach; */?>
+                            <?php endforeach; ?>
+
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>Propietario</th>
                                 <th>Nombre</th>
                                 <th>IP</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>
                                 <th>Procesador</th>
-                                <th>Tipo Procesador</th>
-                                <th>Ghz Procesador</th>
-                                <th>Ghz Procesador</th>
-                                <th>Estado</th>
+                                <th>Cores Logicos</th>
+                                <th>Cores</th>
+                                <th>Velocidad Ghz </th>
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>

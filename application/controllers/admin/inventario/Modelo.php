@@ -25,8 +25,8 @@ class Modelo extends MY_Controller {
         $this->load->model( $ruta . modelo(), 'Modelo');
         $this->load->model($ruta . 'Marca_model');
         /* VARIABLES PARA DINAMIZAR */
-        $this->url = base_url() . 'admin/inventario/' . str_replace('_', '-', $this->controlador) . '/';
-        $this->vista = 'admin/inventario/' . $this->controlador . '/';
+        $this->url = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
+        $this->vista = $ruta . $this->controlador . '/';
         /* END VARIABLES */
     }
     /**

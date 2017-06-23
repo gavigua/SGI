@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license         MIT
  * @since           31/06/2017
  */
-class Dispositivo extends MY_Controller {
+class Periferico extends MY_Controller {
 
     /**
      * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase 
@@ -24,10 +24,17 @@ class Dispositivo extends MY_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $ruta = 'admin/inventario/';
+        $ruta = 'dashboard/';
+        $rutaAdmin = 'admin/inventario/';
+        $rutaGeneral = 'admin/generales/';
+        $rutaUsuario = 'admin/seguridad/';
         $this->load->model($ruta . modelo(), 'Modelo');
-        $this->load->model($ruta . 'Dispositivo_model');
-        $this->load->model($ruta . 'TipoDispositivo_model');
+        $this->load->model($rutaAdmin . 'Tperiferico_model');
+        $this->load->model($rutaAdmin . 'Marca_model');
+        $this->load->model($rutaAdmin . 'Modelo_model');
+        $this->load->model($rutaGeneral . 'Estado_model');
+        $this->load->model($rutaUsuario . 'Usuario_model');
+
         /* VARIABLES PARA DINAMIZAR */
         $this->url = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = $ruta . $this->controlador . '/';
@@ -43,7 +50,6 @@ class Dispositivo extends MY_Controller {
         $data = array(
             'titulo' => $this->titulo,
             'contenido' => $this->vista . 'index',
-           
         );
         $this->load->view(THEME . TEMPLATE, $data);
     }
@@ -128,5 +134,4 @@ class Dispositivo extends MY_Controller {
             show_404();
         }
     }
-
 }
