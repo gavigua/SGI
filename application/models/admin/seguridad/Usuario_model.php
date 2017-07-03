@@ -125,7 +125,7 @@ class Usuario_model extends MY_Model
         /*
          * Se crea el rol para la persona
          */
-        $this->db->insert('usuario_rol', beforeInsert(['usuario_id' => $usuario_id, 'rol_id' => $this->input->post('rol_id')]));
+        $this->db->insert('usuario_rol', beforeInsert(array('usuario_id' => $usuario_id, 'rol_id' => $this->input->post('rol_id'))));
 
         return true;
     }
@@ -156,7 +156,7 @@ class Usuario_model extends MY_Model
         }
 
         $this->db->where('id', $id)->update('usuario', beforeUpdate($data));
-        $this->db->where('usuario_id', $id)->update('usuario_rol', beforeUpdate(['rol_id' => $this->input->post('rol_id')])); //se actualiza el rol
+       $this->db->where('usuario_id', $id)->update('usuario_rol', beforeUpdate(array('rol_id' => $this->input->post('rol_id')))); //se actualiza el rolactualiza el rol
         return true;
     }
 }
