@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * Lenguaje de mensajes
  * @package         SGI
@@ -8,17 +8,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author          Jcramos
  * @author          Juan Carlos Ramos
  * @link            http://sgi.sti.com.ve/
- * @version         Current v0.1.0 
+ * @version         Current v0.1.0
  * @copyright       Copyright (c) 2017 SGI
  * @license         MIT
  * @since           31/06/2017
  */
 /*
-  |--------------------------------------------------------------------------
-  | Mensajes
-  |--------------------------------------------------------------------------
-  | Etiquetas para mensajes estaticos.
-  |
+|--------------------------------------------------------------------------
+| Mensajes
+|--------------------------------------------------------------------------
+| Etiquetas para mensajes estaticos.
+|
  */
 $lang['mensaje_hecho_crear'] = "El registro fue creado exitosamente.";
 $lang['mensaje_error_crear'] = "El registro no se pudo crear, verifique las validaciones.";

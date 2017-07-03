@@ -27,10 +27,7 @@
             <div class="panel-body">
                 <?php echo form_open('', 'id="form-principal"'); ?>
                 <div class="row">
-                    <div class="form-group">
-                        <label for="avatar">Avatar</label>
-                        <input type="file" name="avatar" class="form-control" id="avatar" value="<?php echo set_value('avatar', isset($data->avatar) ? $data->avatar : '') ?>" required/>
-                    </div>
+
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="control-label">Usuario <span class="required">*</span></label>
@@ -59,13 +56,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="control-label">Contraseña <?php echo!isset($data->id) ? '<span class="required">*</span>' : '' ?></label>
+                            <label class="control-label">Contraseña <?php echo !isset($data->id) ? '<span class="required">*</span>' : '' ?></label>
                             <input type="password" name="password" class="form-control" id="password" value="" required minlength="5" maxlength="20"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="control-label">Repita Contraseña <?php echo!isset($data->id) ? '<span class="required">*</span>' : '' ?></label>
+                            <label class="control-label">Repita Contraseña <?php echo !isset($data->id) ? '<span class="required">*</span>' : '' ?></label>
                             <input type="password" name="re_password" class="form-control" id="re-password" value="" required minlength="5"  maxlength="20"/>
                         </div>
                     </div>
