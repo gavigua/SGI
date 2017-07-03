@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright   Copyright (c) 2017  STI
  * @license     MIT License
  * @since       02/06/2017
- * 
+ *
  */
 
 class Seguridad {
@@ -24,9 +24,9 @@ class Seguridad {
     protected $CI;
 
     /*
-     * Obliga a los usuarios a realizar el inicio de session 
+     * Obliga a los usuarios a realizar el inicio de session
      * excepto que intente ingresar a los controladores de login y migration
-     * si el usuario ya inicio session y no intenta salir por la url ingresa al 
+     * si el usuario ya inicio session y no intenta salir por la url ingresa al
      * login lo redirecciona al dashboard
      */
 
@@ -45,7 +45,7 @@ class Seguridad {
     }
 
     /**
-     * Este metodo verifica si el rol del usuario logueado 
+     * Este metodo verifica si el rol del usuario logueado
      * tiene permisos para acceder al controlador y metodo
      * recibidos como parametros excepto que::
      * a. la peticion sea hecho por ajax
@@ -57,23 +57,27 @@ class Seguridad {
      * @return Mixed
      *          -  Bolean   TRUE si tiene Permisos
      *          -  redirect si no tiene permisos lo redirecciona al home
-     * 
+     *
      */
-    private function checkPermisos($controlador, $metodo, $rol_id) {
+    private function checkPermisos($controlador, $metodo, $rol_id){
         if ($rol_id === '1' OR $this->CI->input->is_ajax_request() OR $controlador === 'inicio' OR $controlador === 'login' OR $controlador === 'migrations') {
             return TRUE;
         }
         if ($rol_id !== '1' AND $this->CI->uri->segment(1) !== 'admin') {
             $permiso = $controlador . '@' . $metodo;
-            $file = FCPATH . 'assets/sgi/permisos/permiso_' . $this->CI->session->userdata('rol_id') . 'json';
+            $file = FCPATH . 'assets/sgi/permisos/permiso_' . $this->CI->session->userdata('rol_id') . '.json';
             $permisos = json_decode(file_get_contents($file), true);
             if (isset($permisos[$permiso])) {
                 return TRUE;
             } else {
-                redirect('/');
-            }
+                mensaje_alerta('error', 'permiso');
+                 redirect($this->url);
+             }
         } else {
-            redirect('/');
+                mensaje_alerta('error', 'permiso');
+            redirect($this->url);
+
+
         }
     }
   public function crearSession() {
@@ -109,11 +113,11 @@ class Seguridad {
             'apellido' => $query->apellido,
             'creado' => $query->created_at,
             'avatar' => $query->avatar
-            
+
         );
         $this->CI->session->set_userdata($data);
         return TRUE;
     }
-    
-    
+
+
 }
