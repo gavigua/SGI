@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Modelo que utiliza la libreria MY_Model para 
+ * Modelo que utiliza la libreria MY_Model para
  * la gestión de la tabla permiso.
  * Es utilizada para crear los usuarios del sistema
  *
@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author          tutorialesvirtuales.com
  * @author          Roosevelt Guinand
  * @link            http://tutorialesvirtuales.com
- * @version         Current v1.0.0 
+ * @version         Current v1.0.0
  * @copyright       Copyright (c) 2010 - 2015 tutorialesvirtuales
  * @license         MIT
  * @since           06/08/2015
@@ -34,4 +34,5 @@ class Permiso_model extends MY_Model {
         array('field' => 'nombre_a_mostrar', 'label' => 'Nombre a mostrar', 'rules' => 'trim|required|max_length[45]|unique[permiso.nombre_a_mostrar]'),
         array('field' => 'observacion', 'label' => 'Observación', 'rules' => 'trim|required|max_length[200]'),
     );
+
 }
