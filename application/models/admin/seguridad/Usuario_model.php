@@ -105,7 +105,7 @@ class Usuario_model extends MY_Model
      */
     public function crear()
     {
-        if ($this->input->post('rol_id') == 'SuperAdministrador') {
+        if ($this->input->post('rol_id') == 1) {
             $avatar = 'admin.jpg';
         } else {
             $avatar = 'operador.jpg';
@@ -137,7 +137,7 @@ class Usuario_model extends MY_Model
      * @return Boolean
      */
     public function actualizar($id) {
-       if ($this->input->post('rol_id') == 'SuperAdministrador') {
+       if ($this->input->post('rol_id') == 1) {
             $avatar = 'admin.jpg';
         } else {
             $avatar = 'operador.jpg';
