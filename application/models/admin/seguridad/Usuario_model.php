@@ -1,5 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+defined('BASEPATH') or exit('No direct script access allowed');
+
 /**
  * Modelo que utiliza la libreria MY_Model para
  * la gestión de la tabla usuario.
@@ -17,12 +19,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license         MIT
  * @since           31/06/2017
  */
-class Usuario_model extends MY_Model {
+class Usuario_model extends MY_Model
+{
+
     /**
      * Nombre de la tabla gestionada por éste modelo
      * @var string
      */
     public $_table = 'usuario';
+
     /**
      * Reglas de validación utilizadas
      * por la libreria MY_Model
@@ -30,7 +35,6 @@ class Usuario_model extends MY_Model {
      * @var array
      */
     public $validate = array(
-        array('field' => 'avatar', 'label' => 'Avatar', 'rules' => 'trim|required'),
         array('field' => 'usuario', 'label' => 'Usuario', 'rules' => 'trim|required|max_length[20]|unique[usuario.usuario]'),
         array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'trim|required|max_length[20]'),
         array('field' => 'apellido', 'label' => 'Apellido', 'rules' => 'trim|required|max_length[20]'),
@@ -46,7 +50,7 @@ class Usuario_model extends MY_Model {
      * @var array
      */
     public $validate_update = array(
-        array('field' => 'avatar', 'label' => 'Avatar', 'rules' => 'trim|required'),
+
         array('field' => 'usuario', 'label' => 'Usuario', 'rules' => 'trim|required|unique[usuario.usuario]'),
         array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'trim|required|max_length[20]|unique[usuario.nombre]'),
         array('field' => 'apellido', 'label' => 'Apellido', 'rules' => 'trim|required|max_length[20]|unique[usuario.apellido]'),
@@ -55,57 +59,77 @@ class Usuario_model extends MY_Model {
         array('field' => 'estado', 'label' => 'Estado', 'rules' => 'trim|required|is_natural'),
         array('field' => 'rol_id', 'label' => 'Rol', 'rules' => 'trim|required')
     );
+
     /**
      * Este método consulta todos los usuarios
      * y su relación con la tabla usuario_rol
      * @return array Todos los grados
      */
-    public function getAll() {
+    public function getAll()
+    {
         return $this->db
-                        ->select('U.*, UR.rol_id, R.descripcion')
-                        ->from($this->_table . ' U')
-                        ->join('usuario_rol UR', 'UR.usuario_id = U.id')
-                        ->join('Rol R', 'R.id = UR.rol_id')
-                        ->get()
-                        ->result();
+            ->select('U.*, UR.rol_id, R.descripcion')
+            ->from($this->_table . ' U')
+            ->join('usuario_rol UR', 'UR.usuario_id = U.id')
+            ->join('Rol R', 'R.id = UR.rol_id')
+            ->get()
+            ->result();
     }
+
     /**
      * Retorna el registro del usuario solicitado,
      * @param Int $id id del usuario
      * @return String Array
      */
-    public function getDato($id) {
+    public function getDato($id)
+    {
         return $this->db
-                        ->select('U.*, UR.rol_id')
-                        ->from($this->_table . ' U')
-                        ->join('usuario_rol UR', 'UR.usuario_id = U.id AND U.id= '.$id)
-                        ->get()
-                        ->row();
+            ->select('U.*, UR.rol_id')
+            ->from($this->_table . ' U')
+            ->join('usuario_rol UR', 'UR.usuario_id = U.id AND U.id= ' . $id)
+            ->get()
+            ->row();
     }
+
+    /*
+     * SELECT U.*, UR.rol_id, UD.departamento_id
+     * FROM ((usuario U INNER JOIN usuario_rol UR ON  UR.usuario_id = U.id )
+     *  INNER JOIN usuario_departamento UD ON UD.usuario_id = U.id)
+     */
+
     /**
      * Se crea el usuario en la tabla usuario,
      * y su respectiva relación en las tablas:
      *  - usuario_rol
      * @return Boolean
      */
-    public function crear() {
+    public function crear()
+    {
+        if ($this->input->post('rol_id') == 'SuperAdministrador') {
+            $avatar = 'admin.jpg';
+        } else {
+            $avatar = 'operador.jpg';
+        }
         $data = array(
-            'avatar' => $this->input->post('avatar'),
+            'avatar' => $avatar,
             'usuario' => $this->input->post('usuario'),
             'nombre' => $this->input->post('nombre'),
             'apellido' => $this->input->post('apellido'),
             'email' => $this->input->post('email'),
             'password' => hash('sha256', sha1($this->input->post('password'))),
-            'estado' => $this->input->post('estado')
+            'estado' => $this->input->post('estado'),
+            'departamento_id' => $this->input->post('departamento_id'),
         );
         $this->db->insert('usuario', beforeInsert($data));
         $usuario_id = $this->db->insert_id();
         /*
          * Se crea el rol para la persona
          */
-        $this->db->insert('usuario_rol', beforeInsert(array('usuario_id' => $usuario_id, 'rol_id' => $this->input->post('rol_id'))));
-        return TRUE;
+        $this->db->insert('usuario_rol', beforeInsert(['usuario_id' => $usuario_id, 'rol_id' => $this->input->post('rol_id')]));
+
+        return true;
     }
+
     /**
      * Método para actualizar el registro del
      * usuario y reasignar.
@@ -113,20 +137,26 @@ class Usuario_model extends MY_Model {
      * @return Boolean
      */
     public function actualizar($id) {
+       if ($this->input->post('rol_id') == 'SuperAdministrador') {
+            $avatar = 'admin.jpg';
+        } else {
+            $avatar = 'operador.jpg';
+        }
+
         $data = array(
-            'avatar' => $this->input->post('avatar'),
+            'avatar' => $avatar,
             'usuario' => $this->input->post('usuario'),
             'nombre' => $this->input->post('nombre'),
             'apellido' => $this->input->post('apellido'),
             'email' => $this->input->post('email'),
-            'estado' => $this->input->post('estado')
+            'estado' => $this->input->post('estado'),
         );
-        if ($this->input->post('password'))
+        if ($this->input->post('password')) {
             $data['password'] = hash('sha256', sha1($this->input->post('password')));
+        }
+
         $this->db->where('id', $id)->update('usuario', beforeUpdate($data));
-        $this->db->where('usuario_id', $id)->update('usuario_rol', beforeUpdate(array('rol_id' => $this->input->post('rol_id')))); //se actualiza el rol
-        return TRUE;
+        $this->db->where('usuario_id', $id)->update('usuario_rol', beforeUpdate(['rol_id' => $this->input->post('rol_id')])); //se actualiza el rol
+        return true;
     }
-
-
 }
