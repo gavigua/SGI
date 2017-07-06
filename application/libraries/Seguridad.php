@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /*
  * Helper para SGI.
  * @package     SGICMS
@@ -15,7 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class Seguridad {
+class Seguridad
+{
     /*
      * Contiene la instancia CI
      * @var Instance
@@ -30,15 +31,16 @@ class Seguridad {
      * login lo redirecciona al dashboard
      */
 
-    public function __construct() {
-        $this->CI = & get_instance(); //permite acceder a los recursos de codeigniter
+    public function __construct()
+    {
+        $this->CI   = &get_instance(); //permite acceder a los recursos de codeigniter
         $controller = $this->CI->router->class;
-        $method = $this->CI->router->method;
-        $is_login = $this->CI->session->userdata('user_login');
-        if ($controller !== 'login' && $controller !== 'migrations' && !$is_login) {
+        $method     = $this->CI->router->method;
+        $is_login   = $this->CI->session->userdata('user_login');
+        if ('login' !== $controller && 'migrations' !== $controller && !$is_login) {
             $this->CI->session->set_userdata('peticion_url', current_url());
             redirect('admin/acceso/login');
-        } else if ($controller == 'login' && $is_login && $method = !'salir') {
+        } else if ('login' == $controller && $is_login && $method = !'salir') {
             redirect('/');
         }
         $this->checkPermisos($controller, $method, $this->CI->session->userdata('rol_id'));
@@ -59,65 +61,66 @@ class Seguridad {
      *          -  redirect si no tiene permisos lo redirecciona al home
      *
      */
-    private function checkPermisos($controlador, $metodo, $rol_id){
-        if ($rol_id === '1' OR $this->CI->input->is_ajax_request() OR $controlador === 'inicio' OR $controlador === 'login' OR $controlador === 'migrations') {
-            return TRUE;
+    private function checkPermisos($controlador, $metodo, $rol_id)
+    {
+        if ('1' === $rol_id or $this->CI->input->is_ajax_request() or 'inicio' === $controlador or 'login' === $controlador or 'migrations' === $controlador) {
+            return true;
         }
-        if ($rol_id !== '1' AND $this->CI->uri->segment(1) !== 'admin') {
-            $permiso = $controlador . '@' . $metodo;
-            $file = FCPATH . 'assets/sgi/permisos/permiso_' . $this->CI->session->userdata('rol_id') . '.json';
+        if ('1' !== $rol_id and $this->CI->uri->segment(1) !== 'admin') {
+            $permiso  = $controlador . '@' . $metodo;
+            $file     = FCPATH . 'assets/sgi/permisos/permiso_' . $this->CI->session->userdata('rol_id') . '.json';
             $permisos = json_decode(file_get_contents($file), true);
             if (isset($permisos[$permiso])) {
-                return TRUE;
+                return true;
             } else {
                 mensaje_alerta('error', 'permiso');
-                 redirect($this->url);
-             }
+                redirect($this->url);
+            }
         } else {
-                mensaje_alerta('error', 'permiso');
+            mensaje_alerta('error', 'permiso');
             redirect($this->url);
-
-
         }
     }
-  public function crearSession() {
+
+    public function crearSession()
+    {
         $passwordF = hash('sha256', sha1($this->CI->input->post('password')));
-        $query = $this->CI->db
-                        ->select('U.* , UR.rol_id, R.descripcion rol')
-                        ->from('usuario U')
-                        ->join('usuario_rol UR', 'UR.usuario_id = U.id')
-                        ->join('rol R', 'R.id = UR.rol_id')
-                        ->where('U.usuario', $this->CI->input->post('usuario'))
-                        ->where('U.password', $passwordF)
-                        ->where('U.estado', 1)
-                        ->get()->row();
+        $query     = $this->CI->db
+            ->select('U.* , UR.rol_id, R.descripcion rol')
+            ->from('usuario U')
+            ->join('usuario_rol UR', 'UR.usuario_id = U.id')
+            ->join('rol R', 'R.id = UR.rol_id')
+            ->where('U.usuario', $this->CI->input->post('usuario'))
+            ->where('U.password', $passwordF)
+            ->where('U.estado', 1)
+            ->get()->row();
         if ($query && $this->SetSession($query)) {
-            return TRUE;
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     }
+
     /**
      * Crea la sessión a partir del array recibido.
      * @param Array $query Valores a insertar en la variable de sesión
      * @return boolean
      */
-    private function SetSession($query) {
+    private function SetSession($query)
+    {
         $data = array(
-            'user_login' => TRUE,
+            'user_login' => true,
             'usuario_id' => $query->id,
-            'usuario' => $query->usuario,
-            'rol_id' => $query->rol_id,
-            'rol' => $query->rol,
-            'nombre' => $query->nombre,
-            'apellido' => $query->apellido,
-            'creado' => $query->created_at,
-            'avatar' => $query->avatar
+            'usuario'    => $query->usuario,
+            'rol_id'     => $query->rol_id,
+            'rol'        => $query->rol,
+            'nombre'     => $query->nombre,
+            'apellido'   => $query->apellido,
+            'creado'     => $query->created_at,
+            'avatar'     => $query->avatar,
 
         );
         $this->CI->session->set_userdata($data);
-        return TRUE;
+        return true;
     }
-
-
 }

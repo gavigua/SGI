@@ -1,10 +1,10 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> <?= $this->config->item('version'); ?>
+        <b>Version</b> <?=$this->config->item('version');?>
     </div>
-    <strong>Copyright <?php echo date('Y'); ?>  &copy; <a href="<?php echo base_url(); ?>"><?= $this->config->item('project_developer'); ?></a>.</strong> All rights
-    <?= $this->config->item('project_name') ?>
+    <strong>Copyright <?php echo date('Y'); ?>  &copy; <a href="<?php echo base_url(); ?>"><?=$this->config->item('project_developer');?></a>.</strong> All rights
+    <?=$this->config->item('project_name')?>
     reserved.
 </footer>
 
@@ -35,7 +35,10 @@
 <script src="<?php echo base_url() . TEMPLATEASSETS; ?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- SlimScroll 1.3.0 -->
 <script src="<?php echo base_url() . TEMPLATEASSETS; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
-
+<!-- CK Editor -->
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url() . TEMPLATEASSETS; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!--jquery-validate-->
 <script src="<?php echo base_url() . TEMPLATEASSETSSGI; ?>dist/js/jquery-validate/jquery.validate.min.js"></script>
 <script src="<?php echo base_url() . TEMPLATEASSETSSGI; ?>dist/js/jquery-validate/localization/messages_es.min.js"></script>
