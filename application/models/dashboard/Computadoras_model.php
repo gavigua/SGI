@@ -85,7 +85,7 @@ class Computadoras_model extends MY_Model {
         return $this->db
                         ->select('C.*, TC.descripcion TCdescripcion, MA.descripcion MAdescripcion, '
                                 . 'MO.descripcion MOdescripcion, IP.direccion_ip, IP.observaciones,'
-                                . 'PRO.descripcion PROdescripcion, PRO.procesadores_logicos PROPlogicos,'
+                                . 'PRO.id PROID, PRO.descripcion PROdescripcion, PRO.procesadores_logicos PROPlogicos,'
                                 . 'PRO.cores PROCores,PRO.velocidad PROVelocidad, SO.descripcion SOdescripcion, '
                                 . 'US.nombre, US.apellido, E.descripcion Edescripcion')
                         ->from($this->_table . ' C')

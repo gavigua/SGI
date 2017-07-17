@@ -42,7 +42,7 @@ class Login extends MY_Controller {
      */
     public function index() {
         $DATA['titulo'] = 'Gestion de Sistemas';
-        $DATA['descripcion'] = 'Gestion de Sistemas de Inventario';
+        $DATA['descripcion'] = '';
         $DATA['contenido'] = $this->vista . 'index';
         $this->form_validation->set_rules('usuario', 'Usuario', 'trim|required|callback__verificar_usuario');
         $this->form_validation->set_rules('password', 'Contraseña', 'trim|required');

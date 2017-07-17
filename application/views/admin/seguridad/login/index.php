@@ -30,12 +30,7 @@
             <!-- /.col -->
         </div>
         <?php echo form_close(); ?> 
-       
-
-
-        <a href="#">No recuerdo mi clave</a><br>
-        <a href="register.html" class="text-center">Registrar Nuevo Miembro</a>
-
+         
     </div>
     <!-- /.login-box-body -->
 </div>

@@ -304,6 +304,7 @@ a:focus {
 }
 .main-header .logo .logo-lg {
   display: block;
+  background-image: url(../img/logo2.jpg);
 }
 .main-header .logo .logo-mini {
   display: none;
@@ -3258,7 +3259,8 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-  background: #d2d6de;
+  background-image:url(../img/Fondo2.jpg);
+  background-repeat:no-repeat;
 }
 .login-box,
 .register-box {

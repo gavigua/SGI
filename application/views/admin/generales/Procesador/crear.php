@@ -41,12 +41,19 @@
                             <label class="control-label">Velocidad <span class="required">*</span></label>
                             <?php
                             $options = array(
-                                '1.6 GHz' => '1.6 GHz',
-                                '1.8 GHz' =>'1.8 GHz', 
+                                '1.60 GHz' => '1.60 GHz',
+                                '1.80 GHz' =>'1.80 GHz', 
                                 '2.0 GHz' =>'2.0 GHz',
-                                '2.2 GHz' =>'2.2 GHz',
-                                '2.6 GHz' =>'2.6 GHz',
-                                '2.8 GHz' => '2.8 GHz',
+                                '2.10 GHz' =>'2.10 GHz',
+                                '2.20 GHz' =>'2.20 GHz',
+                                '2.30 GHz' =>'2.30 GHz',
+                                '2.40 GHz' =>'2.40 GHz',
+                                '2.53 GHz' =>'2.53 GHz',
+                                '2.60 GHz' =>'2.60 GHz',
+                                '2.67 GHz' =>'2.67 GHz',
+                                '2.70 GHz' =>'2.70 GHz',
+                                '2.80 GHz' => '2.80 GHz',
+                                '2.93 GHz' =>'2.93 GHz',
                                 '3.0 GHz' =>'3.0 GHz', 
                             );
 

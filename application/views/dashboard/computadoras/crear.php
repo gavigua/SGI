@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
-                                    <label class="control-label">Modelo de Dispositivo <span class="required">*</span></label>
+                                    <label class="control-label">Marca Procesador<span class="required">*</span></label>
                                     <?php
                                     echo form_dropdown('modelo_id', $this->Modelo_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('modelo_id', isset($data->modelo_id) ? $data->modelo_id : ''), 'id="modelo_id" class="form-control" required');
                                     ?>
@@ -77,6 +77,33 @@
                                     <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
                                 </div>
                             </div>
+                            <?php $datas = $this->Modelo->getAll() ?>
+                            <?php echo $this->input->post('Procesador_id'); ?>
+                            <?php foreach ($datas as $data): ?>
+                               <?php  if ($data->PROdescripcion == $this->input->post('Procesador_id')): ?>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label class="control-label">Procesador2 <span class="required">*</span></label>
+                                        <input type=text" name="PROCores" class="form-control" id="PROCores" value="<?php echo set_value('PROCores', isset($data->PROCores) ? $data->PROCores : '') ?>" required/>
+                                    </div>
+                                </div>
+                            <?php endif;?> 
+                            <?php endforeach; ?>
+
+
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label class="control-label">Procesador 3<span class="required">*</span></label>
+                                    <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label class="control-label">Procesador4 <span class="required">*</span></label>
+                                    <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
+                                </div>
+                            </div>
+
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="control-label">Sistema Operativo<span class="required">*</span></label>

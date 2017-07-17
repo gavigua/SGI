@@ -3,7 +3,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>TI</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Soluciones En</b>TI</span>
+      <span class="logo-lg"><font color="#367FA9">.</font></span>
     </a>    
 
 <!-- Header Navbar: style can be found in header.less -->
@@ -28,25 +28,12 @@
 
                 <p>
                   <?php print_r($this->session->userdata('nombre') . ' ' . $this->session->userdata('apellido')) ?> - Web Developer
-                  <small>Miembro desde <?php print_r($this->session->userdata('creado') ) ?></small>
+                  
                   
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+          
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">

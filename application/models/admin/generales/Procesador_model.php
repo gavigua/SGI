@@ -30,7 +30,7 @@ class Procesador_model extends MY_Model {
      * @var array
      */
     public $validate = array(
-        array('field' => 'marca_id', 'label' => 'Marca', 'rules' => 'trim|required|max_length[30]|unique[Procesador.marca_id]'),
+        array('field' => 'marca_id', 'label' => 'Marca', 'rules' => 'trim|required|max_length[30]'),
         array('field' => 'descripcion', 'label' => 'Descripcion', 'rules' => 'trim|required|max_length[30]|unique[Procesador.descripcion]'),
         array('field' => 'procesadores_logicos', 'label' => 'Procesadores logicos', 'rules' => 'trim|required|max_length[30]'),
         array('field' => 'cores', 'label' => 'Cores', 'rules' => 'trim|required|max_length[30]'),

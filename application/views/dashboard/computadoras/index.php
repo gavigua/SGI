@@ -48,8 +48,9 @@
                         </thead>
                         <tbody>
                             <?php $datas = $this->Modelo->getAll() ?>
-
+                            
                             <?php foreach ($datas as $data): ?>
+                            
                                 <tr>
                                     <td><?php echo $data->nombre . " " . $data->apellido ?></td>
                                     <td><?php echo $data->hostname ?></td>
