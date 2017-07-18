@@ -1,3 +1,64 @@
+ <script type="text/javascript">// <![CDATA[
+ $(document).ready(function(){
+        $('#marca_id').change(function(){ //any select change on the dropdown with id country trigger this code
+        $("#modelo_id > option").remove(); //first of all clear select items
+            var marca_id = $('#marca_id').val();  // here we are taking country id of the selected one.
+            var csfrData = {};
+         csfrData['<?php echo $this->security->get_csrf_token_name(); ?>']
+                           = '<?php echo $this->security->get_csrf_hash(); ?>';
+            $.ajax({
+                type: "POST",
+	            url: "<?php echo site_url('dashboard/computadoras/get_modelo/'); ?>"+marca_id, //here we are calling our user controller and get_cities method with the country_id
+	            dataType : 'json',
+	            data : csfrData,
+
+                success: function(modelo) //we're calling the response json array 'cities'
+                {
+                    $.each(modelo,function(id,descripcion) //here we're doing a foeach loop round each city with id as the key and city as the value
+                    {
+                        var opt = $('<option />'); // here we're creating a new select option with for each city
+                        opt.val(id);
+                        opt.text(descripcion);
+                        $('#modelo_id').append(opt); //here we will append these new select options to a dropdown with the id 'cities'
+                    });
+                }
+
+            });
+
+        });
+    });
+</script>
+<script type="text/javascript">// <![CDATA[
+ $(document).ready(function(){
+        $('#Procesador_id').change(function(){ //any select change on the dropdown with id country trigger this code
+ $("#plogicos > option").remove();
+            var Procesador_id = $('#Procesador_id').val();  // here we are taking country id of the selected one.
+            var csfrData = {};
+         csfrData['<?php echo $this->security->get_csrf_token_name(); ?>']
+                           = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+            $.ajax({
+                type: "POST",
+	            url: "<?php echo site_url('dashboard/computadoras/get_procesador/'); ?>"+Procesador_id, //here we are calling our user controller and get_cities method with the country_id
+	            dataType : 'json',
+	            data : csfrData,
+
+                success: function(procesador) //we're calling the response json array 'procesador'
+                {
+                    $.each(procesador,function(id,procesador)
+                    {
+                    	$('#pLogicos').val(procesador.procesadores_logicos)
+                       $('#pCores').val(procesador.cores)
+                       $('#pVelocidad').val(procesador.velocidad)
+                    });
+                }
+
+            });
+
+        });
+    });
+</script>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
@@ -64,12 +125,12 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
-                                    <label class="control-label">Marca Procesador<span class="required">*</span></label>
+                                    <label class="control-label">Modelo de Dispositivo<span class="required">*</span></label>
                                     <?php
-                                    echo form_dropdown('modelo_id', $this->Modelo_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('modelo_id', isset($data->modelo_id) ? $data->modelo_id : ''), 'id="modelo_id" class="form-control" required');
-                                    ?>
-
-                                </div>
+$modelo['#'] = 'Seleccione';
+echo form_dropdown('modelo_id', $modelo, set_value('modelo_id', isset($data->modelo_id) ? $data->modelo_id : ''), 'id="modelo_id" class="form-control" required');
+?>
+                               </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
@@ -77,30 +138,22 @@
                                     <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
                                 </div>
                             </div>
-                            <?php $datas = $this->Modelo->getAll() ?>
-                            <?php echo $this->input->post('Procesador_id'); ?>
-                            <?php foreach ($datas as $data): ?>
-                               <?php  if ($data->PROdescripcion == $this->input->post('Procesador_id')): ?>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label class="control-label">Procesador2 <span class="required">*</span></label>
-                                        <input type=text" name="PROCores" class="form-control" id="PROCores" value="<?php echo set_value('PROCores', isset($data->PROCores) ? $data->PROCores : '') ?>" required/>
-                                    </div>
-                                </div>
-                            <?php endif;?> 
-                            <?php endforeach; ?>
-
-
-                            <div class="col-lg-2">
+                            <div class="col-lg-1">
                                 <div class="form-group">
-                                    <label class="control-label">Procesador 3<span class="required">*</span></label>
-                                    <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
+                                    <label class="control-label">Logigos<span class="required">*</span></label>
+                                    <input type=text" name="pLogicos" class="form-control" id="pLogicos" value="<?php echo set_value('pLogicos', isset($data->pLogicos) ? $data->pLogicos : '') ?>" required disabled/>
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-1">
                                 <div class="form-group">
-                                    <label class="control-label">Procesador4 <span class="required">*</span></label>
-                                    <?php echo form_dropdown('Procesador_id', $this->Procesador_model->order_by('id', 'asc')->dropdown('descripcion'), set_value('Procesador_id', isset($data->Procesador_id) ? $data->Procesador_id : ''), 'id="Procesador_id" class="form-control" required') ?>
+                                    <label class="control-label"> Cores<span class="required">*</span></label>
+                                    <input type=text" name="pCores" class="form-control" id="pCores" value="<?php echo set_value('pCores', isset($data->pCores) ? $data->pCores : '') ?>" required disabled/>
+                                </div>
+                            </div>
+                              <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label class="control-label">Velocidad<span class="required">*</span></label>
+                                    <input type=text" name="pVelocidad" class="form-control" id="pVelocidad" value="<?php echo set_value('pVelocidad', isset($data->pVelocidad) ? $data->pVelocidad : '') ?>" required disabled/>
                                 </div>
                             </div>
 

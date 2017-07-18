@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * Controlador que permite gestionar los tipos de Menús del sistema
  *
@@ -9,38 +9,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author          tutorialesvrituales.com
  * @author          Roosevelt Guinand
  * @link            http://tutorialesvirtuales.com
- * @version         Current v1.0.0 
+ * @version         Current v1.0.0
  * @copyright       Copyright (c) 2010 - 2015 Tutorialesvirtuales
  * @license         MIT
  * @since           24/08/2015
  */
-class Modelo extends MY_Controller {
+class Modelo extends MY_Controller
+{
     /**
-     * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase 
+     * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase
      * e inicializar las variables que permiten dinamizar el desarrollo
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $ruta = 'admin/inventario/';
-        $this->load->model( $ruta . modelo(), 'Modelo');
+        $this->load->model($ruta . modelo(), 'Modelo');
         $this->load->model($ruta . 'Marca_model');
         /* VARIABLES PARA DINAMIZAR */
-        $this->url = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
+        $this->url   = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = $ruta . $this->controlador . '/';
         /* END VARIABLES */
     }
+
     /**
      * Lista todas los registros de la tabla consultada
      * utilizando la libreria datatable de Jquery
      * @return      String vista
      */
-    public function index() {
+    public function index()
+    {
         $data = array(
-            'titulo' => $this->titulo,
-            'contenido' => $this->vista . 'index'
+            'titulo'    => $this->titulo,
+            'contenido' => $this->vista . 'index',
         );
         $this->load->view(THEME . TEMPLATE, $data);
     }
+
     /**
      * Este método primero consulta si esta recibiendo datos via POST,
      * y si es así valida y crea el nuevo registro en la DB,
@@ -49,18 +54,20 @@ class Modelo extends MY_Controller {
      *          redirecciona hacia el método Index
      *          de lo contrario carga la vista del formulario
      */
-    public function crear() {
+    public function crear()
+    {
         if ($this->input->post() && $this->Modelo->insert($this->input->post())) {
             mensaje_alerta('hecho', 'crear');
             redirect($this->url);
         } else {
             $data = array(
-                'titulo' => 'Crear ' . $this->titulo,
-                'contenido' => $this->vista . 'crear'
+                'titulo'    => 'Crear ' . $this->titulo,
+                'contenido' => $this->vista . 'crear',
             );
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
+
     /**
      * Este método primero consulta si estan recibiendo datos via POST,
      * y si es así valida y actualiza el registro en la DB,
@@ -71,33 +78,57 @@ class Modelo extends MY_Controller {
      *          redirecciona hacia el método Index
      *          de lo contrario carga la vista
      */
-    public function actualizar($id = FALSE) {
+    public function actualizar($id = false)
+    {
         if ($this->input->post() && $this->Modelo->update($id, $this->input->post())) {
             mensaje_alerta('hecho', 'actualizar');
             redirect($this->url);
         } else {
             $dato = $this->Modelo->get($id);
             $data = array(
-                'titulo' => 'Actualizar ' . $this->titulo,
+                'titulo'    => 'Actualizar ' . $this->titulo,
                 'contenido' => $this->vista . 'crear',
-                'data' => $dato ? $dato : show_404()
+                'data'      => $dato ? $dato : show_404(),
             );
             $this->load->view(THEME . TEMPLATE, $data);
         }
     }
+
     /**
      * Éste método permite eliminar un registro
      * de la tabla gestionada en la DB
      * Devuelve mensaje de error o éxito en el borrado
      * @param       integer $id id del registro
-     * @return      Redirect 
+     * @return      Redirect
      */
-    public function eliminar($id = FALSE) {
+    public function eliminar($id = false)
+    {
         if ($this->Modelo->delete($id)) {
             mensaje_alerta('hecho', 'eliminar');
         } else {
             mensaje_alerta('error', 'eliminar');
         }
         redirect($this->url);
+    }
+
+    public function get_marca($tcomputadora)
+    {
+        $this->db->select('*');
+
+        if (null != $tcomputadora) {
+            $this->db->where('country_id', $country);
+        }
+
+        $query  = $this->db->get('cities');
+        $cities = array();
+
+        if ($query->result()) {
+            foreach ($query->result() as $city) {
+                $cities[$city->id] = $city->city_name;
+            }
+            return $cities;
+        } else {
+            return false;
+        }
     }
 }

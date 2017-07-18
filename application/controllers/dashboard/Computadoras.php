@@ -26,8 +26,8 @@ class Computadoras extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $ruta = 'dashboard/';
-        $rutaAdmin = 'admin/inventario/';
+        $ruta        = 'dashboard/';
+        $rutaAdmin   = 'admin/inventario/';
         $rutaGeneral = 'admin/generales/';
         $rutaUsuario = 'admin/seguridad/';
         $this->load->model($ruta . modelo(), 'Modelo');
@@ -40,7 +40,7 @@ class Computadoras extends MY_Controller
         $this->load->model($rutaUsuario . 'Usuario_model');
 
         /* VARIABLES PARA DINAMIZAR */
-        $this->url = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
+        $this->url   = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = $ruta . $this->controlador . '/';
         /* END VARIABLES */
     }
@@ -53,7 +53,7 @@ class Computadoras extends MY_Controller
     public function index()
     {
         $data = [
-            'titulo' => $this->titulo,
+            'titulo'    => $this->titulo,
             'contenido' => $this->vista . 'index',
         ];
         $this->load->view(THEME . TEMPLATE, $data);
@@ -76,7 +76,7 @@ class Computadoras extends MY_Controller
             redirect($this->url);
         } else {
             $data = [
-                'titulo' => 'Crear ' . $this->titulo,
+                'titulo'    => 'Crear ' . $this->titulo,
                 'contenido' => $this->vista . 'crear',
             ];
             $this->load->view(THEME . TEMPLATE, $data);
@@ -103,9 +103,9 @@ class Computadoras extends MY_Controller
         } else {
             $dato = $this->Modelo->getDato($id);
             $data = [
-                'titulo' => 'Actualizar ' . $this->titulo,
+                'titulo'    => 'Actualizar ' . $this->titulo,
                 'contenido' => $this->vista . 'crear',
-                'data' => $dato ? $dato : show_404(),
+                'data'      => $dato ? $dato : show_404(),
             ];
             $this->load->view(THEME . TEMPLATE, $data);
         }
@@ -141,5 +141,17 @@ class Computadoras extends MY_Controller
         } else {
             show_404();
         }
+    }
+
+    public function get_modelo($marca_id)
+    {
+        $result = $this->Modelo_model->get_modelo($marca_id);
+        $this->output->set_output(json_encode($result));
+    }
+
+    public function get_procesador($procesador)
+    {
+        $result = $this->Procesador_model->get_procesador($procesador);
+        $this->output->set_output(json_encode($result));
     }
 }
