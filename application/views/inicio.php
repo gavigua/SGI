@@ -10,13 +10,13 @@
         <li><a href="#">Dashboard</a></li>
     </ol>
 </section>
-<div class="col-lg-6 col-xs-6">
+<div class="col-lg-4 col-xs-6">
     <!-- small box -->
-    <div class="small-box bg-yellow">
+    <div class="small-box bg-aqua">
         <div class="inner">
             <h3>150</h3>
 
-            <p>Requerimientos</p>
+            <p>Requerimientoso</p>
         </div>
         <div class="icon">
             <i class="ion ion-bag"></i>
@@ -27,9 +27,22 @@
 <!-- ./col -->
 
 <!-- ./col -->
+<div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+        <div class="inner">
+            <h3>7</h3>
 
+            <p>Laptops Disponibles</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person-add"></i>
+        </div>
+        
+    </div>
+</div>
 <!-- ./col -->
-<div class="col-lg-6 col-xs-6">
+<div class="col-lg-4 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-red">
         <div class="inner">
