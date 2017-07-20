@@ -41,7 +41,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $datas = $this->Modelo->getAll()?>
+                            <?php
+if ($this->session->userdata('rol_id') == '1') {
+	$datas = $this->Modelo->getAll();
+} else {
+	$datas = $this->Modelo->getDato($this->session->userdata('usuario_id'));
+}
+
+?>
+
 
                             <?php foreach ($datas as $data): ?>
                                 <tr>

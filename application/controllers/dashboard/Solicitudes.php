@@ -133,5 +133,4 @@ class Solicitudes extends MY_Controller {
 			show_404();
 		}
 	}
-
 }
