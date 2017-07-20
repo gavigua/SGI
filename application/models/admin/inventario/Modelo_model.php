@@ -31,8 +31,8 @@ class Modelo_model extends MY_Model
      * @var array
      */
     public $validate = array(
-        array('field' => 'descripcion', 'label' => 'Descripcion', 'rules' => 'trim|required|max_length[30]|unique[modelo.descripcion]'),
-        array('field' => 'marca_id', 'label' => 'Marca', 'rules' => 'trim|required|max_length[30]|unique[modelo.marca_id]'),
+        array('field' => 'descripcion', 'label' => 'Descripcion', 'rules' => 'trim|required|max_length[30]'),
+        array('field' => 'marca_id', 'label' => 'Marca', 'rules' => 'trim|required|max_length[30]'),
     );
     public function get_modelo($marca_id)
     {

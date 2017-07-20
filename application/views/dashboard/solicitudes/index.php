@@ -34,16 +34,10 @@
                         <thead>
                             <tr>
                                 <th>Propietario</th>
-                                <th>Nombre</th>
-                                <th>IP</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                <th>Procesador</th>
-                                <th>Cores Logicos</th>
-                                <th>Cores</th>
-                                <th>Velocidad Ghz </th>
-                                <th>Acciones</th>
-
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Departamento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,14 +46,11 @@
                             <?php foreach ($datas as $data): ?>
                                 <tr>
                                     <td><?php echo $data->nombre . " " . $data->apellido ?></td>
-                                    <td><?php echo $data->hostname ?></td>
-                                    <td><?php echo $data->direccion_ip ?></td>
-                                    <td><?php echo $data->MAdescripcion ?></td>
-                                    <td><?php echo $data->MOdescripcion ?></td>
-                                    <td><?php echo $data->PROdescripcion ?></td>
-                                    <td><?php echo $data->PROPlogicos ?></td>
-                                    <td><?php echo $data->PROCores ?></td>
-                                    <td><?php echo $data->PROVelocidad ?></td>
+                                    <td><?php echo $data->TSdescripcion ?></td>
+                                    <td><?php echo $data->descripcion ?></td>
+                                    <td><?php echo $data->ESDescripcion ?></td>
+                                    <td><?php echo $data->DEDescripcion ?></td>
+
                                     <td>
                                         <a href="<?php echo $this->url . 'actualizar/' . $data->id ?>" class="btn btn-warning btn-sm tooltips" data-original-title="Editar este registro">
                                             <i class="fa fa-edit"></i></a>
@@ -73,16 +64,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <tr>
                                 <th>Propietario</th>
-                                <th>Nombre</th>
-                                <th>IP</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                <th>Procesador</th>
-                                <th>Cores Logicos</th>
-                                <th>Cores</th>
-                                <th>Velocidad Ghz </th>
-                                <th>Acciones</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Departamento</th>
                             </tr>
                         </tfoot>
                     </table>
