@@ -82,6 +82,24 @@ class Solicitudes_model extends MY_Model {
 	 * @param Int $id id del usuario
 	 * @return String Array
 	 */
+	public function getSolicitudID($id) {
+		return $this->db
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.nombre, US.apellido,'
+				. ' US.usuario, DE.descripcion DEDescripcion')
+			->from($this->_table . ' S')
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id AND S.id= ' . $id)
+			->join('esolicitud ES', 'S.Esolicitud_id=ES.id AND S.id= ' . $id)
+			->join('usuario US', 'S.usuario_id=US.id AND S.id= ' . $id)
+			->join('departamento DE', 'DE.id = US.departamento_id AND S.id= ' . $id)
+			->get()
+			->result();
+	}
+
+	/**
+	 * Retorna el registro del usuario solicitado,
+	 * @param Int $id id del usuario
+	 * @return String Array
+	 */
 	public function getDato($id) {
 		return $this->db
 			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.nombre, US.apellido,'
