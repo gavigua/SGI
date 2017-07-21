@@ -38,6 +38,7 @@
                                 <th>Descripcion</th>
                                 <th>Estado</th>
                                 <th>Departamento</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +58,9 @@ if ($this->session->userdata('rol_id') == '1') {
                                     <td><?php echo $data->nombre . " " . $data->apellido ?></td>
                                     <td><?php echo $data->TSdescripcion ?></td>
                                     <td><?php echo $data->descripcion ?></td>
-                                    <td><?php echo $data->ESDescripcion ?></td>
+                                    <td>
+                                    <a href="#" class="label label-info btn-sm tooltips" data-original-title="Estado Actual"><?php echo $data->ESDescripcion ?></a>
+									</td>
                                     <td><?php echo $data->DEDescripcion ?></td>
 
                                     <td>
@@ -78,6 +81,7 @@ if ($this->session->userdata('rol_id') == '1') {
                                 <th>Descripcion</th>
                                 <th>Estado</th>
                                 <th>Departamento</th>
+                                <th>Acciones</th>
                             </tr>
                         </tfoot>
                     </table>

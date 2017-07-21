@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
@@ -21,7 +21,7 @@
         <div class="icon">
             <i class="ion ion-bag"></i>
         </div>
- 
+
     </div>
 </div>
 <!-- ./col -->
@@ -38,7 +38,7 @@
         <div class="icon">
             <i class="ion ion-person-add"></i>
         </div>
-        
+
     </div>
 </div>
 <!-- ./col -->
@@ -53,7 +53,7 @@
         <div class="icon">
             <i class="ion ion-pie-graph"></i>
         </div>
-       
+
     </div>
 </div>
 <!-- ./col -->
@@ -64,7 +64,7 @@
               <h3 class="box-title">Solicitudes</h3>
 
               <div class="box-tools pull-right">
-                
+
               </div>
             </div>
             <!-- /.box-header -->
@@ -79,62 +79,23 @@
                   </tr>
                   </thead>
                   <tbody>
+                  <?php
+if ($this->session->userdata('rol_id') == '1') {
+	$datas = $this->Solicitudes_model->getAll();
+} else {
+	$datas = $this->Solicitudes_model->getSolicitudID($this->session->userdata('usuario_id'));
+
+}?>
+			  <?php foreach ($datas as $data): ?>
                   <tr>
-                    <td><a href="pages/examples/invoice.html">1</a></td>
-                    <td>Solicitud de Incidencia por Falla de laptop</td>
-                    <td><span class="label label-info">Nueva</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
+                  <td><?php echo $data->id ?></td>
+                  <td><?php echo $data->descripcion ?></td>
+                  <td>
+                                    <a href="#" class="label label-info btn-sm tooltips" data-original-title="Estado Actual"><?php echo $data->ESDescripcion ?></a>
+									</td>
                   </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">2</a></td>
-                    <td>Solicitud por requerimiento de batería para Laptop</td>
-                    <td><span class="label label-warning">Pendiente</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">3</a></td>
-                    <td>Solicitud por Requerimiento por pendrive 16 Gb de </td>
-                    <td><span class="label label-success">Resuelta</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">4</a></td>
-                    <td>Solicitud de Incidencia por Virus en Laptop</td>
-                    <td><span class="label label-info">En Curso</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">5</a></td>
-                    <td>Solicitud de Incidencia por Falla en la tarjeta de red</td>
-                    <td><span class="label label-warning">Pendiente</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">6</a></td>
-                    <td>Solicitud de Incidencia por Accesos a Internet</td>
-                    <td><span class="label label-danger">pendiente</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">7</a></td>
-                    <td>Solicitud de Incidencia por porblemas de impresión</td>
-                    <td><span class="label label-success">Resuelto</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
+                <?php endforeach;?>
+
                   </tbody>
                 </table>
               </div>
@@ -142,13 +103,13 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              
+
             </div>
             <!-- /.box-footer -->
           </div>
 
     </section>
     <!-- right col -->
- 
+
 </body>
 </html>

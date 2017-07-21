@@ -15,19 +15,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @license         MIT
  * @since           31/06/2017
  */
-class Inicio extends CI_Controller
-{
-    public function __construct()
-    {
-        parent::__construct();
-    }
+class Inicio extends CI_Controller {
+	public function __construct() {
+		parent::__construct();
+		$ruta = 'dashboard/';
+		$this->load->model($ruta . 'Solicitudes_model');
 
-    public function index()
-    {
-        $data = array(
-            'titulo'    => 'Inicio ',
-            'contenido' => 'inicio',
-        );
-        $this->load->view(THEME . TEMPLATE, $data);
-    }
+	}
+
+	public function index() {
+		$data = array(
+			'titulo' => 'Inicio ',
+			'contenido' => 'inicio',
+		);
+		$this->load->view(THEME . TEMPLATE, $data);
+	}
 }
