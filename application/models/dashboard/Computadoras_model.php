@@ -100,6 +100,26 @@ class Computadoras_model extends MY_Model {
                         ->get()
                         ->result();
     }
+    public function getDisponibles() {
+        return $this->db
+                        ->select('C.*, TC.descripcion TCdescripcion, MA.descripcion MAdescripcion, '
+                                . 'MO.descripcion MOdescripcion, IP.direccion_ip, IP.observaciones,'
+                                . 'PRO.id PROID, PRO.descripcion PROdescripcion, PRO.procesadores_logicos PROPlogicos,'
+                                . 'PRO.cores PROCores,PRO.velocidad PROVelocidad, SO.descripcion SOdescripcion, '
+                                . 'US.nombre, US.apellido, E.descripcion Edescripcion')
+                        ->from($this->_table . ' C')
+                        ->join('tcomputadora TC', 'C.tcomputadora_id=TC.id')
+                        ->join('marca MA', 'C.marca_id=MA.id')
+                        ->join('Procesador PRO', 'C.Procesador_id=PRO.id')
+                        ->join('sistema_operativo SO', 'C.sistema_operativo_id=SO.id')
+                        ->join('usuario US', 'C.usuario_id=US.id')
+                        ->join('estado E', 'C.estado_id=E.id')
+                        ->join('modelo MO', 'C.modelo_id=MO.id')
+                        ->join('direccion_ip IP', 'C.id=IP.computadoras_id')
+                        ->where('C.estado_id= 4')
+                        ->get()
+                        ->num_rows();
+    }
 
     /**
      * Retorna el registro del usuario solicitado,

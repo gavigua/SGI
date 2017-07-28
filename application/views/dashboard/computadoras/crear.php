@@ -138,7 +138,7 @@ echo form_dropdown('modelo_id', $modelo, set_value('modelo_id', isset($data->mod
                             </div>
                             <div class="col-lg-1">
                                 <div class="form-group">
-                                    <label class="control-label">Logigos<span class="required">*</span></label>
+                                    <label class="control-label">Lógicos<span class="required">*</span></label>
                                     <input type=text" name="pLogicos" class="form-control" id="pLogicos" value="<?php echo set_value('pLogicos', isset($data->pLogicos) ? $data->pLogicos : '') ?>" required disabled/>
                                 </div>
                             </div>

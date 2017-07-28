@@ -47,6 +47,9 @@ if ($this->session->userdata('rol_id') == '1') {
 	$datas = $this->Modelo->getAll();
 } else {
 	$datas = $this->Modelo->getSolicitudID($this->session->userdata('usuario_id'));
+        
+       
+      
 
 }
 

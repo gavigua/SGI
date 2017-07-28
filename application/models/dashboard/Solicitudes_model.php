@@ -84,15 +84,44 @@ class Solicitudes_model extends MY_Model {
 	 */
 	public function getSolicitudID($id) {
 		return $this->db
-			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.nombre, US.apellido,'
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.id UserID, US.nombre, US.apellido,'
 				. ' US.usuario, DE.descripcion DEDescripcion')
 			->from($this->_table . ' S')
-			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id AND S.id= ' . $id)
-			->join('esolicitud ES', 'S.Esolicitud_id=ES.id AND S.id= ' . $id)
-			->join('usuario US', 'S.usuario_id=US.id AND S.id= ' . $id)
-			->join('departamento DE', 'DE.id = US.departamento_id AND S.id= ' . $id)
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id ')
+			->join('esolicitud ES', 'S.Esolicitud_id=ES.id ')
+			->join('usuario US', 'S.usuario_id=US.id ')
+			->join('departamento DE', 'DE.id = US.departamento_id ')
+                        ->where('US.id= ' . $id)
 			->get()
 			->result();
+	}
+        public function getCountRequerimiento($id) {
+		return $this->db
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.id UserID, US.nombre, US.apellido,'
+				. ' US.usuario, DE.descripcion DEDescripcion')
+			->from($this->_table . ' S')
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id ')
+			->join('esolicitud ES', 'S.Esolicitud_id=ES.id ')
+			->join('usuario US', 'S.usuario_id=US.id ')
+			->join('departamento DE', 'DE.id = US.departamento_id ')
+                        ->where('US.id= ' . $id)
+                        ->where('TS.id = 1')
+			->get()
+			->num_rows();
+	}
+              public function getCountIncidentes($id) {
+		return $this->db
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.id UserID, US.nombre, US.apellido,'
+				. ' US.usuario, DE.descripcion DEDescripcion')
+			->from($this->_table . ' S')
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id ')
+			->join('esolicitud ES', 'S.Esolicitud_id=ES.id ')
+			->join('usuario US', 'S.usuario_id=US.id ')
+			->join('departamento DE', 'DE.id = US.departamento_id ')
+                        ->where('US.id= ' . $id)
+                        ->where('TS.id = 2')
+			->get()
+			->num_rows();
 	}
 
 	/**

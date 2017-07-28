@@ -20,6 +20,7 @@ class Inicio extends CI_Controller {
 		parent::__construct();
 		$ruta = 'dashboard/';
 		$this->load->model($ruta . 'Solicitudes_model');
+                $this->load->model($ruta . 'Computadoras_model');
 
 	}
 

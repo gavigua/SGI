@@ -37,7 +37,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url() . 'dashboard/accesos/usuario/actualizar/' . print_r($this->session->userdata('id'))  ?>" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="<?php echo base_url() . 'admin/seguridad/usuario/actualizar/' . $this->session->userdata('usuario_id')   ?>" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo base_url();?>admin/acceso/login/salir" class="btn btn-default btn-flat">Cerrar Session</a>

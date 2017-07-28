@@ -11,48 +11,20 @@
     </ol>
 </section>
 
-<?php if ($this->session->userdata('rol_id') != '1') :  ?>
-<div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-        <div class="inner">
-           <?php $Num = $this->Solicitudes_model->getCountRequerimiento($this->session->userdata('usuario_id')); ?>
-            <h3><?php echo $Num ?> </h3>
 
-            <p>Requerimientoso</p>
-        </div>
-        <div class="icon">
-            <i class="ion ion-bag"></i>
-        </div>
+<?php
+if ($this->session->userdata('rol_id') == '1') :  ?>
 
-    </div>
-</div>
-<!-- ./col -->
-
-<div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-red">
-        <div class="inner">
-              <?php $Num = $this->Solicitudes_model->getCountIncidentes($this->session->userdata('usuario_id')); ?>
-            <h3><?php echo $Num ?> </h3>
-
-            <p>Incidentes</p>
-        </div>
-        <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-        </div>
-
-    </div>
-</div>
-<?php else :?>
+<!-- Panel principal -->
+<div > 
 <div class="col-lg-4 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-aqua">
         <div class="inner">
-            <?php $Num = $this->Computadoras_model->getDisponibles(); ?>
+            <?php $Num = $this->Solicitudes_model->getCountRequerimiento($this->session->userdata('usuario_id')); ?>
             <h3><?php echo $Num ?> </h3>
 
-            <p>Equipos en Estado Disponibles</p>
+            <p>Requerimientoso</p>
         </div>
         <div class="icon">
             <i class="ion ion-bag"></i>
@@ -94,9 +66,51 @@
 
     </div>
 </div>
-<?php endif; ?>
+<!-- ./col -->
+</div> 
+<?php
+else : ?>
+	
+<!-- Panel principal -->
+<div > 
+<div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+        <div class="inner">
+            <?php $Num = $this->Solicitudes_model->getCountRequerimiento($this->session->userdata('usuario_id')); ?>
+            <h3><?php echo $Num ?> </h3>
+
+            <p>Requerimientoso</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-bag"></i>
+        </div>
+
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+        <div class="inner">
+                  <?php $Num = $this->Solicitudes_model->getCountIncidentes($this->session->userdata('usuario_id')); ?>
+            <h3><?php echo $Num ?> </h3>
+         
+
+            <p>Incidentes</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+
+    </div>
+</div>
 <!-- ./col -->
 </div>
+<?php endif  ?>
+
+
+
 <!-- /.row -->
 <div class="box box-info">
             <div class="box-header with-border">
