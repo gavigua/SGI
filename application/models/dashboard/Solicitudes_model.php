@@ -76,6 +76,32 @@ class Solicitudes_model extends MY_Model {
 			->get()
 			->result();
 	}
+        	public function getAllIncidente() {
+		return $this->db
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.nombre, US.apellido,'
+				. ' US.usuario, DE.descripcion DEDescripcion')
+			->from($this->_table . ' S')
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id')
+			->join('esolicitud ES ', 'S.Esolicitud_id=ES.id')
+			->join('usuario US', 'S.usuario_id=US.id')
+			->join('departamento DE', 'DE.id = US.departamento_id')
+                        ->where('S.tsolicitud_id = 2')
+			->get()
+			->num_rows();
+	}
+                	public function getAllRequerimiento() {
+		return $this->db
+			->select('S.*, TS.nombre TSdescripcion, ES.estado ESDescripcion, US.nombre, US.apellido,'
+				. ' US.usuario, DE.descripcion DEDescripcion')
+			->from($this->_table . ' S')
+			->join('tsolicitud TS', 'S.tsolicitud_id=TS.id')
+			->join('esolicitud ES ', 'S.Esolicitud_id=ES.id')
+			->join('usuario US', 'S.usuario_id=US.id')
+			->join('departamento DE', 'DE.id = US.departamento_id')
+                        ->where('S.tsolicitud_id = 1')
+			->get()
+			->num_rows();
+	}
 
 	/**
 	 * Retorna el registro del usuario solicitado,

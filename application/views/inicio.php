@@ -67,9 +67,10 @@
     <!-- small box -->
     <div class="small-box bg-yellow">
         <div class="inner">
-            <h3>7</h3>
+            <?php $Num = $this->Solicitudes_model->getAllRequerimiento(); ?>
+            <h3><?php echo $Num ?> </h3>
 
-            <p>Laptops Disponibles</p>
+            <p>Requerimientos</p>
         </div>
         <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -82,7 +83,7 @@
     <!-- small box -->
     <div class="small-box bg-red">
         <div class="inner">
-                  <?php $Num = $this->Solicitudes_model->getCountIncidentes($this->session->userdata('usuario_id')); ?>
+                  <?php $Num = $this->Solicitudes_model->getAllIncidente(); ?>
             <h3><?php echo $Num ?> </h3>
          
 
