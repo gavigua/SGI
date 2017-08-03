@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        
+
         <!-- jvectormap 3.3.7 -->
         <link rel="stylesheet" href="<?php echo base_url() . TEMPLATEASSETS; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
         <!-- Theme style -->
@@ -48,10 +48,3 @@
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
-
-            <header class="main-header">
-
-                <?php $this->load->view(THEME . 'layouts/_navbar'); ?>
-            </header>
-
-            <?php $this->load->view(THEME . 'layouts/_sidebar'); ?>

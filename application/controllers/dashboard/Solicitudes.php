@@ -138,7 +138,7 @@ class Solicitudes extends MY_Controller {
 
     public function getdato($id) {
         $datas = $this->Modelo->getSolicitudID($id);
-       
+
         /*foreach ($datas as $data):
 
             echo $data->nombre . " " . $data->apellido;
@@ -147,6 +147,17 @@ class Solicitudes extends MY_Controller {
             echo $data->DEDescripcion;
 
         endforeach;*/
+    }
+    public function reporte()
+    {
+        $this->load->library('crearpdf');
+        $datas = $this->Modelo->getAll();
+        $data = [
+            'titulo'    => $this->titulo];
+        $html = $this->load->view('dashboard/solicitudes/reporte', $data,true);
+
+        $this->crearpdf->crear_pdf($html,true,'solicitudes');
+
     }
 
 }

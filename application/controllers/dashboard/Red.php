@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author          Jcramos
  * @author          Juan Carlos Ramos
  * @link            http://sgi.sti.com.ve/
- * @version         Current v0.1.0 
+ * @version         Current v0.1.0
  * @copyright       Copyright (c) 2017 SGI
  * @license         MIT
  * @since           31/06/2017
@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Red extends MY_Controller {
 
     /**
-     * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase 
+     * Permite la carga de los Modelos a ser usuados, en los diferentes metodos de la clase
      * e inicializar las variables que permiten dinamizar el desarrollo
      */
     public function __construct() {
@@ -58,7 +58,7 @@ class Red extends MY_Controller {
      * Este método primero consulta si esta recibiendo datos via POST,
      * y si es así valida y guarda el registro del nuevo usuario super-administrador
      * en la tabla, de lo contrario carga el formulario para crear un nuevo registro
-     * @return  Mixed 
+     * @return  Mixed
      *          - Si recibe y valida los datos via POST redirecciona hacia el método Index
      *          - Si no carga la vista del formulario
      */
@@ -80,7 +80,7 @@ class Red extends MY_Controller {
     /**
      * Este método primero consulta si esta recibiendo datos via POST,
      * y si es así valida y actualiza el registro del usuario en la tabla,
-     * de lo contrario carga el formulario para que el usuario 
+     * de lo contrario carga el formulario para que el usuario
      * edite el registro cuyo id se recibe como parametro.
      * @param   integer $id id del registro
      * @return  Mixed si recibe y valida los datos via POST
@@ -104,10 +104,10 @@ class Red extends MY_Controller {
         }
     }
 
-    /* esta funcion realiza la eliminacion de los registros de la tablas usuario y usuario_rol 
+    /* esta funcion realiza la eliminacion de los registros de la tablas usuario y usuario_rol
      * permitiendo la normalizacion de los elementos en ambas tablas
-     * 
-     * 
+     *
+     *
      */
 
     public function eliminar($id = FALSE) {
@@ -133,5 +133,16 @@ class Red extends MY_Controller {
         } else {
             show_404();
         }
+    }
+    public function reporte()
+    {
+        $this->load->library('crearpdf');
+        $datas = $this->Modelo->getAll();
+        $data = [
+            'titulo'    => $this->titulo];
+        $html = $this->load->view('dashboard/red/reporte', $data,true);
+
+        $this->crearpdf->crear_pdf($html,true,'redes');
+
     }
 }

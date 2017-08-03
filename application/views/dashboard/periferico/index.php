@@ -27,6 +27,10 @@
                     <a href="<?php echo $this->url ?>crear" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
                         Nuevo registro <i class="fa fa-plus-circle"></i></a>
                 </span>
+                <span>
+                    <a href="<?php echo $this->url ?>reporte" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
+                        Nuevo reportes<i class="fa fa-plus-circle"></i></a>
+                </span>
 
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -54,7 +58,7 @@
                                     <td><?php echo $data->MAdescripcion ?></td>
                                     <td><?php echo $data->MOdescripcion ?></td>
                                     <td><?php echo $data->serial ?></td>
-                                    
+
                                     <td>
                                         <a href="<?php echo $this->url . 'actualizar/' . $data->id ?>" class="btn btn-warning btn-sm tooltips" data-original-title="Editar este registro">
                                             <i class="fa fa-edit"></i></a>
@@ -88,4 +92,3 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
-

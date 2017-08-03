@@ -28,7 +28,10 @@ class Inicio extends CI_Controller {
 		$data = array(
 			'titulo' => 'Inicio ',
 			'contenido' => 'inicio',
+
 		);
+
 		$this->load->view(THEME . TEMPLATE, $data);
 	}
+
 }

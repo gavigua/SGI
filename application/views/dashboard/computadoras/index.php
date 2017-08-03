@@ -27,7 +27,10 @@
                     <a href="<?php echo $this->url ?>crear" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
                         Nuevo registro <i class="fa fa-plus-circle"></i></a>
                 </span>
-
+                <span>
+                    <a href="<?php echo $this->url ?>reporte" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
+                        Nuevo reportes<i class="fa fa-plus-circle"></i></a>
+                </span>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="lista" class="table table-bordered table-striped">
@@ -48,9 +51,9 @@
                         </thead>
                         <tbody>
                             <?php $datas = $this->Modelo->getAll() ?>
-                            
+
                             <?php foreach ($datas as $data): ?>
-                            
+
                                 <tr>
                                     <td><?php echo $data->nombre . " " . $data->apellido ?></td>
                                     <td><?php echo $data->hostname ?></td>
@@ -97,4 +100,3 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
-

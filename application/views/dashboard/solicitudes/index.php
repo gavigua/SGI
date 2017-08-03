@@ -27,6 +27,10 @@
                     <a href="<?php echo $this->url ?>crear" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
                         Nuevo registro <i class="fa fa-plus-circle"></i></a>
                 </span>
+                <span>
+                    <a href="<?php echo $this->url ?>reporte" class="btn btn-success btn-sm tooltips" data-original-title="Nuevo registro">
+                        Nuevo reporte <i class="fa fa-plus-circle"></i></a>
+                </span>
 
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -47,9 +51,9 @@ if ($this->session->userdata('rol_id') == '1') {
 	$datas = $this->Modelo->getAll();
 } else {
 	$datas = $this->Modelo->getSolicitudID($this->session->userdata('usuario_id'));
-        
-       
-      
+
+
+
 
 }
 
@@ -98,4 +102,3 @@ if ($this->session->userdata('rol_id') == '1') {
     <!-- /.row -->
 </section>
 <!-- /.content -->
-

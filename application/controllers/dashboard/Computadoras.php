@@ -39,6 +39,8 @@ class Computadoras extends MY_Controller
         $this->load->model($rutaGeneral . 'Estado_model');
         $this->load->model($rutaUsuario . 'Usuario_model');
 
+
+
         /* VARIABLES PARA DINAMIZAR */
         $this->url   = base_url() . $ruta . str_replace('_', '-', $this->controlador) . '/';
         $this->vista = $ruta . $this->controlador . '/';
@@ -153,5 +155,16 @@ class Computadoras extends MY_Controller
     {
         $result = $this->Procesador_model->get_procesador($procesador);
         $this->output->set_output(json_encode($result));
+    }
+    public function reporte()
+    {
+        $this->load->library('crearpdf');
+        $datas = $this->Modelo->getAll();
+        $data = [
+            'titulo'    => $this->titulo];
+        $html = $this->load->view('dashboard/computadoras/reporte', $data,true);
+
+        $this->crearpdf->crear_pdf($html,true,'computadores');
+
     }
 }
